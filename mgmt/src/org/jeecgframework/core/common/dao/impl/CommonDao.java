@@ -63,7 +63,7 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
 	 * admin账户初始化
 	 */
 	public void pwdInit(TSUser user,String newPwd){
-//		String query ="from TSUser u where u.userName = :username ";
+		String query ="from TSUser u where u.userName = :username ";
 //		Query queryObject = getSession().createQuery(query);
 //		queryObject.setParameter("username", user.getUserName());
 //		List<TSUser> users =  queryObject.list();

@@ -1,2 +1,3 @@
 *.class
 mgmt/WebContent/WEB-INF/classes
+.idea
