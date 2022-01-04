@@ -1,0 +1,123 @@
+<!-- 定义一个工程，默认任务为warFile。 -->
+<project name="dw" default="warFileS2" basedir=".">
+	<echo>Start to build</echo>
+	<!-- 定义属性，打成war包的名称。 -->
+	<property name="warFileNameTest" value="dw.war" />
+	<property name="warFileNameS1" value="war/s1/dw.war" />
+	<property name="warFileNameS2" value="war/s2/dw.war" />
+	<property name="depLibs" value="${basedir}/libForBuild" />
+
+	<!-- 定义路径，编译java文件时用到的jar包。 -->
+	<path id="project.lib">
+		<fileset dir="${basedir}/WebContent/WEB-INF/lib">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${depLibs}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<!-- 定义任务，清空任务：清空原有的class文件，创建新的build路径。 -->
+	<target name="clean">
+		<echo>清空原有的class文件，创建新的build路径</echo>
+		<delete dir="${basedir}/build" />
+		<mkdir dir="${basedir}/build" />
+	</target>
+
+	<!-- 定义任务，编译src文件夹中的java文件，编译后的class文件放到创建的文件夹下。 -->
+	<target name="compile" depends="clean">
+		<echo>开始编译文件</echo>
+		<javac srcdir="${basedir}/src" destdir="${basedir}/build" includeantruntime="on" debug="true">
+			<classpath refid="project.lib"/>
+			<compilerarg line="-encoding UTF-8" />
+		</javac>
+	</target>
+
+	<target name="copyResource" depends="compile">
+		<echo>复制资源定义文件至build目录</echo>
+		<copy todir="${basedir}/build">
+			<fileset dir="${basedir}/resources">
+				<include name="**/**.*" />
+			</fileset>
+		</copy>
+		<echo>复制src目录的资源定义文件至build目录</echo>
+		<copy todir="${basedir}/build">
+			<fileset dir="${basedir}/src">
+				<include name="**/**.*" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="warFileTest" depends="copyResource">
+		<echo>Make WAR for test env.</echo>
+		<!-- 删除原有war包。 -->
+		<delete dir="${basedir}/${warFileName}" />
+		<!-- 建立新war包。 -->
+		<war destfile="${basedir}/${warFileNameTest}" webxml="${basedir}/WebContent/WEB-INF/web.xml">
+			<!-- 将非jar和非class文件拷贝到war包的对应路径下。 -->
+			<fileset dir="${basedir}/WebContent">
+				<include name="**/**.*" />
+				<exclude name="**/*.jar"/>
+				<exclude name="**/*.class"/>
+			</fileset>
+
+			<!-- 将jar和class文件拷贝到war包的对应路径下。 -->
+			<lib dir="${basedir}/WebContent/WEB-INF/lib" />
+			<classes dir="${basedir}/build" />
+		</war>
+	</target>
+	
+	<target name="warFileS2" depends="warFileTest">
+			<echo>处理S2的两个配置文件</echo>
+			<delete file="${basedir}/build/dbconfig.properties" />
+			<move file="${basedir}/build/dbconfig_testEnv.properties" tofile="${basedir}/build/dbconfig.properties" />
+			<!--
+			<delete file="${basedir}/build/sysConfig.properties" />
+			<move file="${basedir}/build/s2_sysConfig.properties" tofile="${basedir}/build/sysConfig.properties" />
+			-->
+			<echo>Make WAR for S2 env.</echo>
+			<!-- 删除原有war包。 -->
+			<delete dir="${basedir}/${warFileNameS2}" />
+			<!-- 建立新war包。 -->
+			<war destfile="${basedir}/${warFileNameS2}" webxml="${basedir}/WebContent/WEB-INF/web.xml">
+				<!-- 将非jar和非class文件拷贝到war包的对应路径下。 -->
+				<fileset dir="${basedir}/WebContent">
+					<include name="**/**.*" />
+					<exclude name="**/*.jar"/>
+					<exclude name="**/*.class"/>
+				</fileset>
+
+				<!-- 将jar和class文件拷贝到war包的对应路径下。 -->
+				<lib dir="${basedir}/WebContent/WEB-INF/lib" />
+				<classes dir="${basedir}/build" />
+			</war>
+	</target>
+	
+	<target name="warFileS1" depends="warFileS2">
+			<echo>处理S1的两个配置文件</echo>
+			<delete file="${basedir}/build/dbconfig.properties" />
+			<move file="${basedir}/build/s1_dbconfig.properties" tofile="${basedir}/build/dbconfig.properties" />
+			<delete file="${basedir}/build/sysConfig.properties" />
+			<move file="${basedir}/build/s1_sysConfig.properties" tofile="${basedir}/build/sysConfig.properties" />
+			<delete file="${basedir}/build/rebel.xml" />
+			<move file="${basedir}/build/rebel.xml.bak" tofile="${basedir}/build/rebel.xml" />
+			<echo>Make WAR for S1 env.</echo>
+			<!-- 删除原有war包。 -->
+			<delete dir="${basedir}/${warFileNameS1}" />
+			<!-- 建立新war包。 -->
+			<war destfile="${basedir}/${warFileNameS1}" webxml="${basedir}/WebContent/WEB-INF/web.xml">
+				<!-- 将非jar和非class文件拷贝到war包的对应路径下。 -->
+				<fileset dir="${basedir}/WebContent">
+					<include name="**/**.*" />
+					<exclude name="**/*.jar"/>
+					<exclude name="**/*.class"/>
+				</fileset>
+
+				<!-- 将jar和class文件拷贝到war包的对应路径下。 -->
+				<lib dir="${basedir}/WebContent/WEB-INF/lib" />
+				<classes dir="${basedir}/build" />
+			</war>
+		</target>
+
+</project>
