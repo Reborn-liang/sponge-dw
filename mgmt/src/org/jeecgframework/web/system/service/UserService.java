@@ -11,6 +11,9 @@ import org.jeecgframework.web.system.pojo.base.TSUser;
 public interface UserService extends CommonService{
 
 	public TSUser checkUserExits(TSUser user);
+	public void addFailedTimes(TSUser user);
+	public void resetFailedTimes(String id);
+	public TSUser checkUserNameExits(TSUser user);
 	public String getUserRole(TSUser user);
 	public void pwdInit(TSUser user, String newPwd);
 	/**

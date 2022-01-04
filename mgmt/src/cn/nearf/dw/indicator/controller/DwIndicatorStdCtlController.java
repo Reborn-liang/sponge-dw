@@ -23,7 +23,9 @@ import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
 import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
 import org.jeecgframework.tag.core.easyui.TagUtil;
+import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.service.SystemService;
+import org.jeecgframework.web.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -57,6 +59,7 @@ public class DwIndicatorStdCtlController extends BaseController {
 	 */
 	private static final Logger logger = Logger.getLogger(DwIndicatorStdCtlController.class);
 
+	private UserService userService;
 	@Autowired
 	private DwIndicatorStdCtlServiceI dwIndicatorStdCtlService;
 	@Autowired
@@ -112,17 +115,22 @@ public class DwIndicatorStdCtlController extends BaseController {
 
 	@RequestMapping(params = "datagrid")
 	public void datagrid(DwIndicatorStdCtlEntity dwIndicatorStdCtl,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-		CriteriaQuery cq = new CriteriaQuery(DwIndicatorStdCtlEntity.class, dataGrid);
-		//查询条件组装器
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, dwIndicatorStdCtl, request.getParameterMap());
-		try{
-		//自定义追加查询条件
-		}catch (Exception e) {
-			throw new BusinessException(e.getMessage());
+		TSUser sessionUser = ResourceUtil.getSessionUserName();
+		if (sessionUser.getUserKey().equals("管理员")) {
+			CriteriaQuery cq = new CriteriaQuery(DwIndicatorStdCtlEntity.class, dataGrid);
+			//查询条件组装器
+			org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, dwIndicatorStdCtl, request.getParameterMap());
+			try {
+				//自定义追加查询条件
+			} catch (Exception e) {
+				throw new BusinessException(e.getMessage());
+			}
+			cq.add();
+			this.dwIndicatorStdCtlService.getDataGridReturn(cq, true);
+			TagUtil.datagrid(response, dataGrid);
+		} else {
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		}
-		cq.add();
-		this.dwIndicatorStdCtlService.getDataGridReturn(cq, true);
-		TagUtil.datagrid(response, dataGrid);
 	}
 
 	/**

@@ -23,6 +23,19 @@ public class UserServiceImpl extends CommonServiceImpl implements UserService {
 	public TSUser checkUserExits(TSUser user){
 		return this.commonDao.getUserByUserIdAndUserNameExits(user);
 	}
+
+	public void addFailedTimes(TSUser user){
+		this.commonDao.addFailedTimes(user);
+	}
+
+	public void resetFailedTimes(String id){
+		this.commonDao.resetFailedTimes(id);
+	}
+
+	public TSUser checkUserNameExits(TSUser user) {
+		return this.commonDao.getUserByName(user);
+	}
+
 	public String getUserRole(TSUser user){
 		return this.commonDao.getUserRole(user);
 	}
@@ -38,5 +51,5 @@ public class UserServiceImpl extends CommonServiceImpl implements UserService {
 				Projections.rowCount()).uniqueResult()).intValue();
 		return allCounts;
 	}
-	
+
 }

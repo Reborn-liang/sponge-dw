@@ -29,6 +29,15 @@ public interface ICommonDao extends IGenericBaseCommonDao{
 	 * 检查用户是否存在
 	 * */
 	public TSUser getUserByUserIdAndUserNameExits(TSUser user);
+	public TSUser getUserByName(TSUser user);
+	/**
+	 * 增加登录失败次数
+	 * */
+	public void addFailedTimes(TSUser user);
+	/**
+	 * 增加登录失败归0
+	 * */
+	public void resetFailedTimes(String id);
 	public String getUserRole(TSUser user);
 	/**
 	 * 文件上传

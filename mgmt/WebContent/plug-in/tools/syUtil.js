@@ -50,16 +50,18 @@ var easyuiErrorFunction = function(XMLHttpRequest) {
 	} catch(ex) {
 		emsg += XMLHttpRequest.responseText + '';
 	}
-	
+
 	if (emsg.length == 0) {
 		try {
 			//emsg += XMLHttpRequest.textStatus + " code: " + XMLHttpRequest.status + ".\n";
 			if (XMLHttpRequest.status == 200 && XMLHttpRequest.responseText.indexOf("/erp/loginController.do?login") >= 0) {
 				emsg += "会话超时：您的登录已超时，请重新登录。";
+			} else if (XMLHttpRequest.status === 401) {
+				emsg += "权限不足，请联系系统管理员，错误代码：" + XMLHttpRequest.status + ".\n";
 			} else {
 				emsg += "非200状态码：系统异常，请联系系统管理员，错误代码：" + XMLHttpRequest.status + ".\n";
 			}
-		} catch(ex) {
+		} catch (ex) {
 		}
 	}
 	

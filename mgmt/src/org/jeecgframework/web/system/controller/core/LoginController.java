@@ -1,13 +1,7 @@
 package org.jeecgframework.web.system.controller.core;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.Cookie;
@@ -135,20 +129,38 @@ public class LoginController extends BaseController{
 			j.setMsg(mutiLangService.getLang("common.verifycode.error"));
 			j.setSuccess(false);
 		} else {
-			TSUser u = userService.checkUserExits(user);
-			return loginPart(u, j, req);
-
+			TSUser tsUser = userService.checkUserNameExits(user);
+			if (tsUser != null) {
+				if (tsUser.getErrorNum() == 3) {
+					// 多语言
+					j.setMsg("您的账号已被锁定，请联系管理员");
+					j.setSuccess(false);
+				} else {
+					user.setPassword(new String(Base64.getDecoder().decode(user.getPassword())));
+					TSUser tsUser2 = userService.checkUserExits(user);
+					if (tsUser2 == null) {
+						userService.addFailedTimes(tsUser);
+						addLoginTryingTimes(req);
+						j.setMsg(mutiLangService.getLang("common.username.or.password.error")+" 还剩下"+(3-tsUser.getErrorNum())+"次机会");
+						j.setSuccess(false);
+					} else{
+						userService.resetFailedTimes(tsUser.getId());
+						return loginPart(tsUser2, j, req);
+					}
+				}
+			} else {
+				j.setMsg(mutiLangService.getLang("common.username.or.password.error"));
+				j.setSuccess(false);
+			}
 		}
 		return j;
 	}
 	
 	private AjaxJson loginPart(TSUser u, AjaxJson j, HttpServletRequest req) {
-		TSUser u2 = null;
-		if(u != null) {
+		TSUser u2;
 			u2 = userService.getEntity(TSUser.class, u.getId());
-		}
-        
-        if (u != null&&u2 != null && u2.getStatus()!=0) {
+
+        if (u2 != null && u2.getStatus()!=0) {
         	
             if (true) {
                 Map<String, Object> attrMap = new HashMap<String, Object>();
@@ -173,16 +185,12 @@ public class LoginController extends BaseController{
                 j.setMsg(mutiLangService.getLang("common.check.shield"));
                 j.setSuccess(false);
             }
-        } else {
-        		addLoginTryingTimes(req);
-        		j.setMsg(mutiLangService.getLang("common.username.or.password.error"));
-            j.setSuccess(false);
         }
         return j;
 	}
-	
-	
-    /**
+
+
+	/**
      * 保存用户登录的信息，并将当前登录用户的组织机构赋值到用户实体中；
      * @param req request
      * @param user 当前登录用户

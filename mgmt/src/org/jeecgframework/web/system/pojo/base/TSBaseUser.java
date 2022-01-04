@@ -25,7 +25,13 @@ public class TSBaseUser extends IdEntity implements java.io.Serializable {
 	private Short activitiSync;//是否同步工作流引擎
 	private Short status;// 状态1：在线,2：离线,0：禁用
 	private byte[] signature;// 签名文件
-	
+	private int errorNum;// 密码输入错误的次数
+
+	@Column(name = "error_num", length = 1)
+	public int getErrorNum() { return errorNum; }
+
+	public void setErrorNum(int errorNum) { this.errorNum = errorNum; }
+
 	/**是否出现在移动端*/
 	@Excel(name="是否出现在移动端")
 	private java.lang.Integer isShowMob;

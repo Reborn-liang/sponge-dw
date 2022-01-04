@@ -109,6 +109,7 @@ function Login(orgId) {
 	var data=$(":input").each(function() {
 		 formData[this.name] =$("#"+this.name ).val();
 	});
+	formData['password'] = window.btoa(formData['password']);
     formData['orgId'] = orgId ? orgId : "";
 	formData['langCode']=$("#langCode").val();
 	formData['langCode'] = $("#langCode option:selected").val();
