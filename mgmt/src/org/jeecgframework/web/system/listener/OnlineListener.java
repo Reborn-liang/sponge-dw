@@ -22,13 +22,14 @@ public class OnlineListener implements ServletContextListener,HttpSessionListene
 	public OnlineListener() {
 	}
 
-	
+
 	public void sessionCreated(HttpSessionEvent httpSessionEvent) {
 	}
 
-	
+
 	public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
-		ClientManager.getInstance().removeClinet(httpSessionEvent.getSession().getId());
+//		ClientManager.getInstance().removeClinet(httpSessionEvent.getSession().getId());
+		LockHelper.moveSession(httpSessionEvent.getSession());
 	}
 
 	/**

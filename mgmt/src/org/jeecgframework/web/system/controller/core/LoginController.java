@@ -1,9 +1,12 @@
 package org.jeecgframework.web.system.controller.core;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +26,7 @@ import org.jeecgframework.core.util.NumberComparator;
 import org.jeecgframework.core.util.ResourceUtil;
 import org.jeecgframework.core.util.SysThemesUtil;
 import org.jeecgframework.core.util.oConvertUtils;
+import org.jeecgframework.web.system.listener.LockHelper;
 import org.jeecgframework.web.system.manager.ClientManager;
 import org.jeecgframework.web.system.pojo.base.Client;
 import org.jeecgframework.web.system.pojo.base.TSConfig;
@@ -144,8 +148,19 @@ public class LoginController extends BaseController{
 						j.setMsg(mutiLangService.getLang("common.username.or.password.error")+" 还剩下"+(3-tsUser.getErrorNum())+"次机会");
 						j.setSuccess(false);
 					} else{
-						userService.resetFailedTimes(tsUser.getId());
-						return loginPart(tsUser2, j, req);
+						req.getSession().setAttribute("userSession", tsUser2);
+						// 检查异地登录
+						if(LockHelper.map.containsKey(tsUser2.getId())){
+							LockHelper.destroyedSession(tsUser2);
+							j.setMsg("您的账号已在线，请重新登录一次！");
+							j.setSuccess(false);
+						}else {
+							// 正常登录
+							userService.resetFailedTimes(tsUser.getId());
+							LockHelper.putSession(req.getSession());
+							return loginPart(tsUser2, j, req);
+						}
+
 					}
 				}
 			} else {
