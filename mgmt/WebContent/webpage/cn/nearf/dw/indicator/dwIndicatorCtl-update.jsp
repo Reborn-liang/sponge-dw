@@ -145,7 +145,7 @@
 		</tr>
 		
 		<tr>
-			<td align="right" width="100px">
+<%--			<td align="right" width="100px">
 				<label class="Validform_label">状态:</label>
 			</td>
 			<td class="value" width="100px">
@@ -153,7 +153,7 @@
 						typeGroupCode="DWIndStatus" defaultVal="${dwIndicatorCtlPage.status}" hasLabel="false"  title="状态"></t:dictSelect>     
 				<span class="Validform_checktip"></span>
 				<label class="Validform_label" style="display: none;">状态</label>
-			</td>
+			</td>--%>
 			<td align="right" width="100px">
 				<label class="Validform_label">业务主键:</label>
 			</td>
@@ -162,8 +162,45 @@
 				<span class="Validform_checktip"></span>
 				<label class="Validform_label" style="display: none;">业务主键</label>
 			</td>
+			<td align="right" width="100px">
+				<label class="Validform_label">加载类型:</label>
+			</td>
+			<td class="value">
+				<t:dictSelect field="jobIncFlg" type="list" noNeedBlank="true"
+							  typeGroupCode="DWLoadType" defaultVal="${dwIndicatorCtlPage.jobIncFlg}" hasLabel="false"  title="加载类型"></t:dictSelect>
+				<span class="Validform_checktip"></span>
+				<label class="Validform_label" style="display: none;">加载类型</label>
+			</td>
 		</tr>
 		<tr>
+<%--			<td align="right" width="100px">
+				<label class="Validform_label">执行周期类型:</label>
+			</td>
+			<td class="value">
+				<t:dictSelect field="jobType" type="list" noNeedBlank="true"
+							  typeGroupCode="DWExecPeriod" defaultVal="${dwIndicatorCtlPage.jobType}" hasLabel="false"  title="执行周期类型"></t:dictSelect>
+				<span class="Validform_checktip"></span>
+				<label class="Validform_label" style="display: none;">执行周期类型</label>
+			</td>--%>
+			<td align="right" width="100px">
+				<label class="Validform_label">名称:</label>
+			</td>
+			<td class="value">
+				<input id="name" name="name" type="text" style="width: 150px" class="inputxt" value='${dwIndicatorCtlPage.name}' datatype="*">
+				<span class="Validform_checktip"></span>
+				<label class="Validform_label" style="display: none;">名称</label>
+			</td>
+			<td align="right" width="100px">
+				<label class="Validform_label">是否需要下发:</label>
+			</td>
+			<td class="value">
+				<t:dictSelect field="sftpFlg" type="list" datatype="*" noNeedBlank="true"
+							  typeGroupCode="sf_yn" defaultVal="${dwIndicatorCtlPage.sftpFlg}" hasLabel="false"  title="是否需要下发" extendJson="{onchange:'disabledSftp()'}"></t:dictSelect>
+				<span class="Validform_checktip"></span>
+				<label class="Validform_label" style="display: none;">是否需要下发</label>
+			</td>
+		</tr>
+<%--		<tr>
 			<td align="right" width="100px">
 				<label class="Validform_label">模型编码:</label>
 			</td>
@@ -181,28 +218,8 @@
 				<span class="Validform_checktip"></span>
 				<label class="Validform_label" style="display: none;">数据保留天数</label>
 			</td>
-		</tr>
-		<tr>
-			<td align="right" width="100px">
-				<label class="Validform_label">执行周期类型:</label>
-			</td>
-			<td class="value">
-					<t:dictSelect field="jobType" type="list" noNeedBlank="true"
-						typeGroupCode="DWExecPeriod" defaultVal="${dwIndicatorCtlPage.jobType}" hasLabel="false"  title="执行周期类型"></t:dictSelect>     
-				<span class="Validform_checktip"></span>
-				<label class="Validform_label" style="display: none;">执行周期类型</label>
-			</td>
-			<td align="right" width="100px">
-				<label class="Validform_label">加载类型:</label>
-			</td>
-			<td class="value">
-					<t:dictSelect field="jobIncFlg" type="list" noNeedBlank="true"
-						typeGroupCode="DWLoadType" defaultVal="${dwIndicatorCtlPage.jobIncFlg}" hasLabel="false"  title="加载类型"></t:dictSelect>     
-				<span class="Validform_checktip"></span>
-				<label class="Validform_label" style="display: none;">加载类型</label>
-			</td>
-		</tr>
-		<tr>
+		</tr>--%>
+<%--		<tr>
 			<td align="right" width="100px">
 				<label class="Validform_label">任务开始时间点:</label>
 			</td>
@@ -211,25 +228,8 @@
 				<span class="Validform_checktip"></span>
 				<label class="Validform_label" style="display: none;">任务开始时间点</label>
 			</td>
-			<td align="right" width="100px">
-				<label class="Validform_label">是否需要下发:</label>
-			</td>
-			<td class="value">
-					<t:dictSelect field="sftpFlg" type="list" datatype="*" noNeedBlank="true"
-						typeGroupCode="sf_yn" defaultVal="${dwIndicatorCtlPage.sftpFlg}" hasLabel="false"  title="是否需要下发" extendJson="{onchange:'disabledSftp()'}"></t:dictSelect>     
-				<span class="Validform_checktip"></span>
-				<label class="Validform_label" style="display: none;">是否需要下发</label>
-			</td>
-		</tr>
-		<tr>
-			<td align="right" width="100px">
-				<label class="Validform_label">名称:</label>
-			</td>
-			<td class="value">
-		     	 <input id="name" name="name" type="text" style="width: 150px" class="inputxt" value='${dwIndicatorCtlPage.name}' datatype="*">
-				<span class="Validform_checktip"></span>
-				<label class="Validform_label" style="display: none;">名称</label>
-			</td>
+		</tr>--%>
+<%--		<tr>
 			<td align="right" width="100px">
 				<label class="Validform_label">是否需要除重处理:</label>
 			</td>
@@ -239,7 +239,7 @@
 				<span class="Validform_checktip"></span>
 				<label class="Validform_label" style="display: none;">是否需要除重处理</label>
 			</td>
-		</tr>
+		</tr>--%>
 		<tr>
 			<td align="right" width="100px">
 				<label class="Validform_label">SQL:</label>
@@ -251,13 +251,13 @@
 			</td>
 			<td class="value" colspan="2">
 				<div style="width: 100px";align="center" >
-					<input type="button" value="填充全量模板" onclick="doFill(0);">
+<%--					<input type="button" value="填充全量模板" onclick="doFill(0);">
 					<br>
 					<br>
 					<input type="button" value="填充增量模板" onclick="doFill(1);">
 					<br>
 					<br>
-					<input type="button" value="解析SQL" onclick="parseSQL(${dwIndicatorCtlPage.id});">
+					<input type="button" value="解析SQL" onclick="parseSQL(${dwIndicatorCtlPage.id});">--%>
 				</div>
 			</td>
 		</tr>
@@ -276,7 +276,7 @@
 				<%-- 增加一个div，用于调节页面大小，否则默认太小 --%>
 				<div style="width:800px;height:1px;"></div>
 				<t:tabs id="tt" iframe="false" tabPosition="top" fit="false">
-				 <t:tab href="dwIndicatorCtlController.do?dwIndicatorColumnCtlList&id=${dwIndicatorCtlPage.id}" icon="icon-search" title="指标明细" id="dwIndicatorColumnCtl"></t:tab>
+<%--				 <t:tab href="dwIndicatorCtlController.do?dwIndicatorColumnCtlList&id=${dwIndicatorCtlPage.id}" icon="icon-search" title="指标明细" id="dwIndicatorColumnCtl"></t:tab>--%>
 				 <t:tab href="dwIndicatorCtlController.do?dwIndicatorSftpCtlList&id=${dwIndicatorCtlPage.id}&sftpFlg=${dwIndicatorCtlPage.sftpFlg}" icon="icon-search" title="下发配置" id="dwIndicatorSftpCtl"></t:tab>
 				</t:tabs>
 			</div>

@@ -99,7 +99,7 @@ $(document).ready(function(){
 					</label>
 				</td>
 				<td class="value">
-						<t:dictSelect  field="dwIndicatorSftpCtlList[0].fixedColumnLength" type="radio" typeGroupCode="sf_yn"  defaultVal="" hasLabel="false" datatype="*"/>
+						<t:dictSelect  field="dwIndicatorSftpCtlList[0].fixedColumnLength" type="radio" typeGroupCode="sf_yn"  defaultVal="N" hasLabel="false" datatype="*"/>
 					<span class="Validform_checktip"></span>
 					<label class="Validform_label" style="display: none;">导出字段是否定长</label>
 				</td>
@@ -196,7 +196,7 @@ $(document).ready(function(){
 					</label>
 				</td>
 				<td class="value">
-						<t:dictSelect  field="dwIndicatorSftpCtlList[0].fixedColumnLength" type="radio" typeGroupCode="sf_yn"  defaultVal="${poVal.fixedColumnLength}" hasLabel="false" datatype="*"/>
+						<t:dictSelect  field="dwIndicatorSftpCtlList[0].fixedColumnLength" type="radio" typeGroupCode="sf_yn"  defaultVal="N" hasLabel="false" datatype="*"/>
 					<span class="Validform_checktip"></span>
 					<label class="Validform_label" style="display: none;">导出字段是否定长</label>
 				</td>
