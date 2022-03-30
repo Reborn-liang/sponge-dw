@@ -1,11 +1,7 @@
 package org.jeecgframework.web.system.controller.core;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -204,8 +200,8 @@ public class UserController extends BaseController {
 	public AjaxJson savenewpwd(HttpServletRequest request) {
 		AjaxJson j = new AjaxJson();
 		TSUser user = ResourceUtil.getSessionUserName();
-		String password = oConvertUtils.getString(request.getParameter("password"));
-		String newpassword = oConvertUtils.getString(request.getParameter("newpassword"));
+		String password = new String(Base64.getDecoder().decode(oConvertUtils.getString(request.getParameter("password"))));
+		String newpassword = new String(Base64.getDecoder().decode(oConvertUtils.getString(request.getParameter("newpassword"))));
 		String pString = PasswordUtil.encrypt(user.getUserName(), password, PasswordUtil.getStaticSalt());
 		if (!pString.equals(user.getPassword())) {
 			j.setMsg("原密码不正确");

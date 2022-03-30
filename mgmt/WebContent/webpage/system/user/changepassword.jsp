@@ -7,17 +7,17 @@
 <t:base type="jquery,easyui,tools"></t:base>
 </head>
 <body style="overflow-y: hidden" scroll="no">
-<t:formvalid formid="formobj" refresh="false" dialog="true" action="userController.do?savenewpwd" usePlugin="password" layout="table">
+<t:formvalid formid="formobj" refresh="false" dialog="true" action="userController.do?savenewpwd" usePlugin="password" layout="table" beforeSubmit="encrypt()">
 	<input id="id" type="hidden" value="${user.id }">
 	<table style="width: 550px" cellpadding="0" cellspacing="1" class="formtable">
 		<tbody>
 			<tr>
 				<td align="right" width="10%"><span class="filedzt">原密码:</span></td>
-				<td class="value"><input type="password" value="" name="password" class="inputxt" datatype="*" errormsg="请输入原密码" /> <span class="Validform_checktip"> 请输入原密码 </span></td>
+				<td class="value"><input id="password" type="password" value="" name="password" class="inputxt" datatype="*" errormsg="请输入原密码" /> <span class="Validform_checktip"> 请输入原密码 </span></td>
 			</tr>
 			<tr>
 				<td align="right"><span class="filedzt">新密码:</span></td>
-				<td class="value"><input type="password" value="" name="newpassword" class="inputxt" plugin="passwordStrength" datatype="*6-18" errormsg="密码至少6个字符,最多18个字符！" /> <span
+				<td class="value"><input id="newpassword1" type="password" value="" name="newpassword" class="inputxt" plugin="passwordStrength" datatype="*6-18" errormsg="密码至少6个字符,最多18个字符！" /> <span
 					class="Validform_checktip"> 密码至少6个字符,最多18个字符！ </span> <span class="passwordStrength" style="display: none;"> <b>密码强度：</b> <span>弱</span><span>中</span><span class="last">强</span> </span></td>
 			</tr>
 			<tr>
@@ -27,4 +27,11 @@
 		</tbody>
 	</table>
 </t:formvalid>
+<script type="text/javascript">
+	function encrypt() {
+		$("#password").val(window.btoa($("#password").val()))
+		$("#newpassword1").val(window.btoa($("#newpassword1").val()))
+		$("#newpassword").val(window.btoa($("#newpassword").val()))
+	}
+</script>
 </body>
