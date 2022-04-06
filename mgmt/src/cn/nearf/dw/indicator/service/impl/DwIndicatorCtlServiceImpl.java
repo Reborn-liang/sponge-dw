@@ -139,8 +139,25 @@ public class DwIndicatorCtlServiceImpl extends CommonServiceImpl implements DwIn
 	public List<Map<String, Object>> previewFromSql(String sql, Object... objs) {
 		return gpJdbcDao.findForJdbc(sql, objs);
 	}
-	
-	public List<String> genFieldsOfSubSQL(DwIndicatorCtlEntity dwIndicatorCtl) {
+
+	private List<Map<String, Object>> genFieldsOfPreview(DwIndicatorCtlEntity dwIndicatorCtl) {
+		String sql = "select column_name,table_schema from information_schema.columns as col where table_name='" + dwIndicatorCtl.getTargetTable() + "' order by ordinal_position";
+		List<Map<String, Object>> srcTableInfoList = gpJdbcDao.findForJdbc(sql);
+		if (srcTableInfoList.isEmpty()) {
+			throw new BusinessException("需要预览的表在schema中不存在");
+		}
+		return srcTableInfoList;
+	}
+
+	public List<String> genFieldsOfSubSQL(DwIndicatorCtlEntity dwIndicatorCtl){
+		List<String> fields = new ArrayList<>();
+		List<Map<String, Object>> srcTableInfoList = genFieldsOfPreview(dwIndicatorCtl);
+		for (Map<String, Object> map : srcTableInfoList) {
+			fields.add((String) map.get("column_name"));
+		}
+		return fields;
+	}
+	/*public List<String> genFieldsOfSubSQL(DwIndicatorCtlEntity dwIndicatorCtl) {
 		List<String> fields = new ArrayList<String>();
 		if (!INDICATOR_MAIN_DATA_TYPE.equals(dwIndicatorCtl.getType())) {
 			fields.add("type");
@@ -184,9 +201,19 @@ public class DwIndicatorCtlServiceImpl extends CommonServiceImpl implements DwIn
 		fields.add("create_date");
 		fields.add("update_date");
 		return fields;
-	}
-	
+	}*/
+
 	public String genSelectSubSQL(DwIndicatorCtlEntity dwIndicatorCtl) {
+		List<Map<String, Object>> srcTableInfoList = genFieldsOfPreview(dwIndicatorCtl);
+		StringBuilder colName= new StringBuilder();
+		String tableSchema = (String) srcTableInfoList.get(0).get("table_schema");
+		for (Map<String, Object> map : srcTableInfoList) {
+			colName.append(map.get("column_name")).append(",");
+		}
+		return "select "+colName.substring(0,colName.length()-1)+" from "+tableSchema+"."+dwIndicatorCtl.getTargetTable();
+	}
+
+	/*public String genSelectSubSQL(DwIndicatorCtlEntity dwIndicatorCtl) {
 		CriteriaQuery cq = new CriteriaQuery(DwIndicatorColumnCtlEntity.class);
 		System.out.println( " dwIndicatorCtl.getId(): "+dwIndicatorCtl.getId());
 		cq.eq("indicatorId", dwIndicatorCtl.getId());
@@ -313,7 +340,7 @@ public class DwIndicatorCtlServiceImpl extends CommonServiceImpl implements DwIn
 				
 		System.out.println("Select sub SQL: " + selectSubSql);
 		return selectSubSql;
-	}
+	}*/
 	
 	
  	public <T> void delete(T entity) {

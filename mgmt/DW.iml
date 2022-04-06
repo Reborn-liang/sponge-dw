@@ -54,5 +54,10 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="library" name="activation-1.1.1" level="project" />
     <orderEntry type="library" name="esapi-2.1.0.1" level="project" />
+    <orderEntry type="library" name="commons-collections-3.2.2" level="project" />
+    <orderEntry type="library" name="fastjson-1.2.79" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.10.0" level="project" />
+    <orderEntry type="library" name="jackson-databind-2.10.0" level="project" />
+    <orderEntry type="library" name="xstream-1.4.19" level="project" />
   </component>
 </module>

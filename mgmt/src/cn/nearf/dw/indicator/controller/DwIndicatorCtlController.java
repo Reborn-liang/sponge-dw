@@ -204,7 +204,9 @@ public class DwIndicatorCtlController extends BaseController {
 		if (StringUtil.isNotEmpty(dwIndicatorCtl.getId())) {
 			request.setAttribute("indId", dwIndicatorCtl.getId());
 		}
-		request.setAttribute("fieldNames",  dwIndicatorCtlService.genFieldsOfSubSQL(dwIndicatorCtl));
+		String id = request.getParameter("id");
+		DwIndicatorCtlEntity ind = systemService.getEntity(DwIndicatorCtlEntity.class, Integer.parseInt(id));
+		request.setAttribute("fieldNames",  dwIndicatorCtlService.genFieldsOfSubSQL(ind));
 		return new ModelAndView("cn/nearf/dw/query/customQueryResult");
 	}
 

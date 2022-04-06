@@ -182,7 +182,7 @@
 			</td>
 			<td class="value">
 					<t:dictSelect field="sftpFlg" type="list" id="sftpFlg" extendJson="{onchange:'disabledSftp()'}" datatype="*"
-						noNeedBlank="true" typeGroupCode="sf_yn"  hasLabel="false"  title="是否需要下发"></t:dictSelect>     
+								  noNeedBlank="true" typeGroupCode="sf_yn"  hasLabel="false"  defaultVal="N" title="是否需要下发"></t:dictSelect>
 				<span class="Validform_checktip"></span>
 				<label class="Validform_label" style="display: none;">是否需要下发</label>
 			</td>
