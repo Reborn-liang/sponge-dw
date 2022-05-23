@@ -1,6 +1,7 @@
 package cn.nearf.ggz.utils;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -129,21 +130,67 @@ public class HttpUtils {
 	public static int fetchHttpUrlStatusCode(String url, ContentType type, String postBody) {
 		return fetchHttpUrlStatusCode(url, type, postBody, 15 * 1000, 30 * 1000);
 	}
-	
+
 	public static int fetchHttpUrlStatusCode(String url, ContentType type, String postBody, int connectTimeout, int readTimeout) {
 		try {
 			boolean hasPostBody = postBody != null && postBody.length() > 0;
-			
+
 			URL unifiedOrderUrl = new URL(url);
 			HttpURLConnection connection = (HttpURLConnection) unifiedOrderUrl.openConnection();
-			connection.setConnectTimeout(connectTimeout);
-			connection.setReadTimeout(readTimeout);
-			connection.setDoInput(true);
-			connection.setUseCaches(false);
-			if (type == null) {
-				connection.setRequestProperty("Content-Type", "text/xml");
-			} else {
-				switch (type) {
+			sendRequest(type, connectTimeout, readTimeout, connection, hasPostBody);
+
+			OutputStream out = null;
+			if (hasPostBody) {
+				out = connection.getOutputStream();
+				out.write(postBody.getBytes("utf-8"));
+				out.flush();
+			}
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+
+			StringBuilder responseRes = new StringBuilder();
+			for (String line = br.readLine(); line != null; line = br.readLine()) {
+				responseRes.append(line);
+			}
+
+			if (hasPostBody) {
+				try {
+					out.close();
+				} catch (Exception e) {
+				}
+			}
+
+			br.close();
+
+			return connection.getResponseCode();
+		} catch (Exception exp) {
+			return 999;
+		}
+	}
+
+	public static HttpURLConnection fetchHttpUrlConnection(String url, ContentType type, String postBody) {
+		HttpURLConnection connection = null;
+		try {
+			boolean hasPostBody = postBody != null && postBody.length() > 0;
+
+			URL unifiedOrderUrl = new URL(url);
+			connection = (HttpURLConnection) unifiedOrderUrl.openConnection();
+			sendRequest(type, 15 * 1000, 30 * 1000, connection, hasPostBody);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}
+
+	private static void sendRequest(ContentType type, int connectTimeout, int readTimeout, HttpURLConnection connection, boolean hasPostBody) throws IOException {
+		connection.setConnectTimeout(connectTimeout);
+		connection.setReadTimeout(readTimeout);
+		connection.setDoInput(true);
+		connection.setUseCaches(false);
+		if (type == null) {
+			connection.setRequestProperty("Content-Type", "text/xml");
+		} else {
+			switch (type) {
 				case FORM:
 					connection.setRequestProperty("Content-Type", "application/form-data");
 					break;
@@ -153,45 +200,17 @@ public class HttpUtils {
 				default:
 					connection.setRequestProperty("Content-Type", "text/xml");
 					break;
-				}
 			}
-			
-			if (hasPostBody) {
-				connection.setDoOutput(true);
-			}
-			
-			connection.setRequestProperty("Accept", "application/json");
-			connection.setRequestProperty("Accept-Charset", "utf-8");
-			
-			connection.connect();
-			
-			OutputStream out = null;
-			if (hasPostBody) {
-				out = connection.getOutputStream();
-				out.write(postBody.getBytes("utf-8"));
-				out.flush();
-			}
-	        
-	        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
-	        
-	        StringBuilder responseRes = new StringBuilder();
-	        for (String line = br.readLine(); line != null; line = br.readLine()) {
-	        	responseRes.append(line); 
-	        }
-	        
-	        if (hasPostBody) {
-	        	try {
-	        		out.close(); 
-				} catch (Exception e) {
-				}
-	        }
-	        
-	        br.close();
-	        
-	        return connection.getResponseCode();
-		} catch (Exception exp) {
-			return 999;
 		}
+
+		if (hasPostBody) {
+			connection.setDoOutput(true);
+		}
+
+		connection.setRequestProperty("Accept", "application/json");
+		connection.setRequestProperty("Accept-Charset", "utf-8");
+
+		connection.connect();
 	}
 	
 	

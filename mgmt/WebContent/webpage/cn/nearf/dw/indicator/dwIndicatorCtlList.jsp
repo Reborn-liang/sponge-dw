@@ -3,11 +3,12 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:1px;">
-  <t:datagrid name="dwIndicatorCtlList" checkbox="true" fitColumns="false" title="指标管理" actionUrl="dwIndicatorCtlController.do?datagrid" idField="id" fit="true" queryMode="group">
-   <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
+  <t:datagrid name="dwIndicatorCtlList" checkbox="true" fitColumns="false" title="指标管理" actionUrl="dwIndicatorCtlController.do?datagrid" idField="id" fit="true" queryMode="group"><t:dgCol title="ID"  field="id"  queryMode="single"  width="120"></t:dgCol><t:dgCol title="操作" field="opt" width="270"></t:dgCol>
    <t:dgFunOpt exp="type#ne#SRC" title="生效" funname="effect(id)"></t:dgFunOpt>
    <t:dgFunOpt exp="type#eq#SRC" title="生成标准化配置" funname="genStd(id)"></t:dgFunOpt>
-   <t:dgCol title="ID"  field="id"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
+   <t:dgFunOpt title="创建表" funname="createTable(id)"></t:dgFunOpt>
+   <t:dgFunOpt title="运行指标" funname="runIndicator(id)"></t:dgFunOpt>
+   <t:dgFunOpt title="删除指标" funname="deleteIndicator(id)"></t:dgFunOpt>
    <t:dgCol title="业务分组"  field="bizGroup"    queryMode="single"  width="120" query="true"></t:dgCol>
    <t:dgCol title="编码"  field="code"    queryMode="single"  width="120" query="true"></t:dgCol>
    <t:dgCol title="指标表名"  field="targetTable"    queryMode="single"  width="120" query="true"></t:dgCol>
@@ -32,11 +33,11 @@
    <t:dgToolBar title="录入" icon="icon-add" url="dwIndicatorCtlController.do?goAdd" funname="add" width="100%" height="100%"></t:dgToolBar>
    <t:dgToolBar title="编辑" icon="icon-edit" url="dwIndicatorCtlController.do?goUpdate" funname="update" width="100%" height="100%"></t:dgToolBar>
    <t:dgToolBar title="预览" icon="icon-add" url="dwIndicatorCtlController.do?goPreview" funname="update" width="100%" height="100%"></t:dgToolBar>
-   <t:dgToolBar title="立即运行" icon="icon-add" url="dwIndicatorCtlController.do?goRerun" funname="update"></t:dgToolBar>
+<%--   <t:dgToolBar title="立即运行" icon="icon-add" url="dwIndicatorCtlController.do?goRerun" funname="update"></t:dgToolBar>--%>
    <%-- <t:dgToolBar title="批量删除"  icon="icon-remove" url="dwIndicatorCtlController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
    <t:dgToolBar title="查看" icon="icon-search" url="dwIndicatorCtlController.do?goUpdate" funname="detail" width="100%" height="100%"></t:dgToolBar>
-   <t:dgToolBar title="导出指标" icon="icon-putout" url="dwIndicatorCtlController.do?goExport&load=detail" funname="detail"></t:dgToolBar>
-   <t:dgToolBar title="导入指标" icon="icon-put" funname="ImportXls"></t:dgToolBar>
+<%--   <t:dgToolBar title="导出指标" icon="icon-putout" url="dwIndicatorCtlController.do?goExport&load=detail" funname="detail"></t:dgToolBar>--%>
+<%--   <t:dgToolBar title="导入指标" icon="icon-put" funname="ImportXls"></t:dgToolBar>--%>
    <%-- 
    <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar> --%>
@@ -58,7 +59,38 @@
  			$("#dwIndicatorCtlListtb").find("input[name='updateDate_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwIndicatorCtlListtb").find("input[name='updateDate_end']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  });
- 
+
+ function createTable(id) {
+  sendFlaskAPI(id, "createTable")
+ }
+
+ function runIndicator(id) {
+  sendFlaskAPI(id, "runIndicator")
+ }
+
+ function deleteIndicator(id) {
+  sendFlaskAPI(id, "deleteIndicator")
+ }
+
+ function sendFlaskAPI(id, method) {
+  showProgress();
+  $.ajax({
+   url: "dwIndicatorCtlController.do?" + method + "&id=" + id, success: function (data) {
+    try {
+     var result = JSON.parse(data);
+     hideProgress();
+     alertTip(result.msg);
+    } catch (ex) {
+     hideProgress();
+     alertTip(ex);
+    }
+   }, error: function (textStatus, errorThrown) {
+    hideProgress();
+    alertTip(errorThrown);
+   }
+  });
+ }
+
 //导入
 function ImportXls() {
 	openuploadwin('导入', 'dwIndicatorCtlController.do?upload', "dwIndicatorCtlList");

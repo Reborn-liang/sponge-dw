@@ -1,8 +1,8 @@
 package cn.nearf.dw.indicator.controller;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -13,6 +13,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.nearf.ggz.config.ErpDBConfig;
+import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.common.controller.BaseController;
@@ -684,7 +686,49 @@ public class DwIndicatorCtlController extends BaseController {
 		}
 		return new ModelAndView("cn/nearf/dw/indicator/dwIndicatorCtl-update");
 	}
-	
+
+    @RequestMapping(params = "createTable")
+    @ResponseBody
+    public AjaxJson createTable(DwIndicatorCtlEntity dwIndicatorCtl, HttpServletRequest req) {
+        return runFlaskAPI(dwIndicatorCtl, req, "createTable", "创建表成功!");
+    }
+
+    @RequestMapping(params = "deleteIndicator")
+    @ResponseBody
+    public AjaxJson deleteIndicator(DwIndicatorCtlEntity dwIndicatorCtl, HttpServletRequest req) {
+        return runFlaskAPI(dwIndicatorCtl, req, "deleteIndicator", "删除指标成功!");
+    }
+
+    @RequestMapping(params = "runIndicator")
+    @ResponseBody
+    public AjaxJson runIndicator(DwIndicatorCtlEntity dwIndicatorCtl, HttpServletRequest req) {
+        return runFlaskAPI(dwIndicatorCtl, req, "runIndicator", "运行指标成功!");
+    }
+
+    private AjaxJson runFlaskAPI(DwIndicatorCtlEntity dwIndicatorCtl, HttpServletRequest req, String method, String successMsg) {
+        AjaxJson j = new AjaxJson();
+        if (StringUtil.isNotEmpty(dwIndicatorCtl.getId())) {
+            System.out.println("dwIndicatorCtl.getId():" + dwIndicatorCtl.getId());
+            String url = ErpDBConfig.getProperty("flask.url") + "/" + method + "/" + dwIndicatorCtl.getId();
+            logger.info("URL:" + url);
+            try {
+                HttpURLConnection conn = HttpUtils.fetchHttpUrlConnection(url, null, null);
+                int code = conn.getResponseCode();
+                if (code == HttpStatus.SC_OK || code == HttpStatus.SC_CREATED)
+                    j.setMsg(successMsg);
+                else
+                    j.setMsg(conn.getResponseMessage());
+//                   req.setAttribute("errorMsg", msg);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                j.setMsg("业务服务异常，请联系系统管理员");
+            }
+        } else {
+            j.setMsg("ID为空，请检查");
+        }
+        return j;
+    }
 	
 	/**
 	 * 加载明细列表[dw_indicator_ctl]
@@ -921,5 +965,45 @@ public class DwIndicatorCtlController extends BaseController {
 		req.setAttribute("controller_name", "dwIndicatorCtlController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
+
+    public String getAction(String method, Integer id) {
+        URL url;
+        HttpURLConnection conn = null;
+        try {
+            if (id != null) url = new URL(ErpDBConfig.getProperty("flask.url") + "/" + method + "/" + id);
+            else url = new URL(ErpDBConfig.getProperty("flask.url"));
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            // 设置http请求超时时间30000毫秒（30秒）
+            conn.setConnectTimeout(30000);
+            conn.setReadTimeout(30000);
+            conn.setUseCaches(true);
+
+            int code = conn.getResponseCode();
+            if (code == HttpStatus.SC_OK) {
+                DataInputStream in = new DataInputStream(conn.getInputStream());
+                int len = in.available();
+                byte[] by = new byte[len];
+                in.readFully(by);
+                String rev = new String(by, StandardCharsets.UTF_8);
+                in.close();
+                return rev;
+            } else {
+                // http 请求返回非 200状态时处理
+                return "<?xml version=\"1.0\" encoding=\"utf-8\" ?><error>" + conn.getResponseMessage() + "/error>";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+        return null;
+    }
 
 }
