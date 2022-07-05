@@ -93,7 +93,14 @@ public class DwIndicatorCtlController extends BaseController {
 				dwIndicatorCtl.setStatus("A");
 				systemService.saveOrUpdate(dwIndicatorCtl);
 			} catch (Exception e) {
-				message = "indicator生效失败, 原因："+e.getMessage();
+				int max = 50;
+				String errorInfo;
+				String msg = e.getMessage();
+				if (msg.length() > max)
+					errorInfo = msg.substring(0, max) + "......";
+				else
+					errorInfo = msg;
+				message = "indicator生效失败, 原因：" + errorInfo;
 			}
 		}else {
 			message = "indicator生效失败, 未知原因";

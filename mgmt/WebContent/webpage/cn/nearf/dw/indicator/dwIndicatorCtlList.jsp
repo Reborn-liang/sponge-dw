@@ -4,9 +4,9 @@
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:1px;">
   <t:datagrid name="dwIndicatorCtlList" checkbox="true" fitColumns="false" title="指标管理" actionUrl="dwIndicatorCtlController.do?datagrid" idField="id" fit="true" queryMode="group"><t:dgCol title="ID"  field="id"  queryMode="single"  width="120"></t:dgCol><t:dgCol title="操作" field="opt" width="270"></t:dgCol>
-   <t:dgFunOpt exp="type#ne#SRC" title="生效" funname="effect(id)"></t:dgFunOpt>
+   <t:dgFunOpt exp="type#ne#SRC,CALC" title="生效" funname="effect(id)"></t:dgFunOpt>
    <t:dgFunOpt exp="type#eq#SRC" title="生成标准化配置" funname="genStd(id)"></t:dgFunOpt>
-   <t:dgFunOpt title="创建表" funname="createTable(id)"></t:dgFunOpt>
+   <t:dgFunOpt title="创建表" exp="type#ne#CALC" funname="createTable(id)"></t:dgFunOpt>
    <t:dgFunOpt title="运行指标" funname="runIndicator(id)"></t:dgFunOpt>
    <t:dgFunOpt title="删除指标" funname="deleteIndicator(id)"></t:dgFunOpt>
    <t:dgCol title="业务分组"  field="bizGroup"    queryMode="single"  width="120" query="true"></t:dgCol>
