@@ -107,9 +107,11 @@ function Login(orgId) {
 	var checkurl=$('form').attr('check');//验证路径
 	 var formData = new Object();
 	var data=$(":input").each(function() {
-		 formData[this.name] =$("#"+this.name ).val();
+		if (this.name === "userName" || this.name === "password")
+			formData[this.name] = window.btoa($("#" + this.name).val());
+		else
+			formData[this.name] = $("#" + this.name).val();
 	});
-	formData['password'] = window.btoa(formData['password']);
     formData['orgId'] = orgId ? orgId : "";
 	formData['langCode']=$("#langCode").val();
 	formData['langCode'] = $("#langCode option:selected").val();

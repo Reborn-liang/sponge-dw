@@ -133,6 +133,7 @@ public class LoginController extends BaseController{
 			j.setMsg(mutiLangService.getLang("common.verifycode.error"));
 			j.setSuccess(false);
 		} else {
+			user.setUserName(new String(Base64.getDecoder().decode(user.getUserName())));
 			TSUser tsUser = userService.checkUserNameExits(user);
 			if (tsUser != null) {
 				if (tsUser.getErrorNum() == 3) {
