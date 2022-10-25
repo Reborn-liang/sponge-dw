@@ -137,6 +137,7 @@ label.iPhoneCheckLabelOn span {
     <script type="text/javascript" src="plug-in/login/js/jquery-jrumble.js"></script>
     <script type="text/javascript" src="plug-in/login/js/jquery.tipsy.js"></script>
     <script type="text/javascript" src="plug-in/login/js/iphone.check.js"></script>
+    <script type="text/javascript" src="plug-in/login/js/crypto-js.min.js"></script>
     <script type="text/javascript" src="plug-in/login/js/login.js"></script>
  <!--    <script type="text/javascript" src="plug-in/lhgDialog/lhgdialog.min.js"></script> -->
     <%=lhgdialogTheme %>

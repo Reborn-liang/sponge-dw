@@ -39,6 +39,7 @@ import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.service.MutiLangServiceI;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.service.UserService;
+import org.jeecgframework.web.system.util.PasswordUtil2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -133,7 +134,7 @@ public class LoginController extends BaseController{
 			j.setMsg(mutiLangService.getLang("common.verifycode.error"));
 			j.setSuccess(false);
 		} else {
-			user.setUserName(new String(Base64.getDecoder().decode(user.getUserName())));
+			user.setUserName(PasswordUtil2.desEncrypt(user.getUserName()));
 			TSUser tsUser = userService.checkUserNameExits(user);
 			if (tsUser != null) {
 				if (tsUser.getErrorNum() == 3) {
@@ -141,7 +142,7 @@ public class LoginController extends BaseController{
 					j.setMsg("您的账号已被锁定，请联系管理员");
 					j.setSuccess(false);
 				} else {
-					user.setPassword(new String(Base64.getDecoder().decode(user.getPassword())));
+					user.setPassword(PasswordUtil2.desEncrypt(user.getPassword()));
 					TSUser tsUser2 = userService.checkUserExits(user);
 					if (tsUser2 == null) {
 						userService.addFailedTimes(tsUser);
