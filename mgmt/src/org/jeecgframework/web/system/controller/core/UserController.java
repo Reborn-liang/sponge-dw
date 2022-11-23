@@ -39,6 +39,7 @@ import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.pojo.base.TSUserOrg;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.service.UserService;
+import org.jeecgframework.web.system.util.PasswordUtil2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -200,8 +201,8 @@ public class UserController extends BaseController {
 	public AjaxJson savenewpwd(HttpServletRequest request) {
 		AjaxJson j = new AjaxJson();
 		TSUser user = ResourceUtil.getSessionUserName();
-		String password = new String(Base64.getDecoder().decode(oConvertUtils.getString(request.getParameter("password"))));
-		String newpassword = new String(Base64.getDecoder().decode(oConvertUtils.getString(request.getParameter("newpassword"))));
+		String password = PasswordUtil2.desEncrypt(oConvertUtils.getString(request.getParameter("password")));
+		String newpassword = PasswordUtil2.desEncrypt(oConvertUtils.getString(request.getParameter("newpassword")));
 		String pString = PasswordUtil.encrypt(user.getUserName(), password, PasswordUtil.getStaticSalt());
 		if (!pString.equals(user.getPassword())) {
 			j.setMsg("原密码不正确");

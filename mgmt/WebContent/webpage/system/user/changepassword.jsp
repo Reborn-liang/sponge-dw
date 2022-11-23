@@ -7,7 +7,7 @@
 <t:base type="jquery,easyui,tools"></t:base>
 </head>
 <body style="overflow-y: hidden" scroll="no">
-<t:formvalid formid="formobj" refresh="false" dialog="true" action="userController.do?savenewpwd" usePlugin="password" layout="table" beforeSubmit="encrypt()">
+<t:formvalid formid="formobj" refresh="false" dialog="true" action="userController.do?savenewpwd" usePlugin="password" layout="table" beforeSubmit="encryptPassword()">
 	<input id="id" type="hidden" value="${user.id }">
 	<table style="width: 550px" cellpadding="0" cellspacing="1" class="formtable">
 		<tbody>
@@ -27,11 +27,60 @@
 		</tbody>
 	</table>
 </t:formvalid>
+<script type="text/javascript" src="plug-in/login/js/crypto-js.min.js"></script>
 <script type="text/javascript">
-	function encrypt() {
-		$("#password").val(window.btoa($("#password").val()))
-		$("#newpassword1").val(window.btoa($("#newpassword1").val()))
-		$("#newpassword").val(window.btoa($("#newpassword").val()))
+	// 默认的 KEY 与 iv 如果没有给
+	const KEY = CryptoJS.enc.Utf8.parse("9qJhN9A5jytWA4*a");
+	const IV = CryptoJS.enc.Utf8.parse('9qJhN9A5jytWA4*a');
+	/**
+	 * AES加密 ：字符串 key iv  返回base64
+	 */
+	function Encrypt(word, keyStr, ivStr) {
+		let key = KEY;
+		let iv = IV;
+		if (keyStr) {
+			key = CryptoJS.enc.Utf8.parse(keyStr);
+			iv = CryptoJS.enc.Utf8.parse(ivStr);
+		}
+		let srcs = CryptoJS.enc.Utf8.parse(word);
+		var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+			iv: iv,
+			mode: CryptoJS.mode.CBC,
+			padding: CryptoJS.pad.ZeroPadding
+		});
+		return CryptoJS.enc.Base64.stringify(encrypted.ciphertext);
+
+	}
+	/**
+	 * AES 解密 ：字符串 key iv  返回base64
+	 *
+	 * @return {string}
+	 */
+	function Decrypt(word, keyStr, ivStr) {
+		let key  = KEY;
+		let iv = IV;
+
+		if (keyStr) {
+			key = CryptoJS.enc.Utf8.parse(keyStr);
+			iv = CryptoJS.enc.Utf8.parse(ivStr);
+		}
+
+		let base64 = CryptoJS.enc.Base64.parse(word);
+		let src = CryptoJS.enc.Base64.stringify(base64);
+
+		let decrypt = CryptoJS.AES.decrypt(src, key, {
+			iv: iv,
+			mode: CryptoJS.mode.CBC,
+			padding: CryptoJS.pad.ZeroPadding
+		});
+
+		let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+		return decryptedStr.toString();
+	}
+	function encryptPassword() {
+		$("#password").val(Encrypt($("#password").val()))
+		$("#newpassword1").val(Encrypt($("#newpassword1").val()))
+		$("#newpassword").val(Encrypt($("#newpassword").val()))
 	}
 </script>
 </body>
