@@ -111,6 +111,10 @@
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
+			<bean class="cn.nearf.dw.indicator.filter.SecurityInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
 			<bean class="org.jeecgframework.core.interceptors.MethodTimeLogAspect" />
 		</mvc:interceptor>
 		<mvc:interceptor>

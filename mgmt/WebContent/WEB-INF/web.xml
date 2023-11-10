@@ -217,10 +217,47 @@
 	</filter-mapping>
 	
 	<!-- ckfinder配置 END -->
-    <error-page>
-        <error-code>404</error-code>
-        <location>/webpage/common/404.jsp</location>
-    </error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/webpage/common/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>401</error-code>
+		<location>/webpage/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/webpage/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/webpage/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>429</error-code>
+		<location>/webpage/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/webpage/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>501</error-code>
+		<location>/webpage/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>502</error-code>
+		<location>/webpage/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/webpage/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>504</error-code>
+		<location>/webpage/common/error.jsp</location>
+	</error-page>
+
 
 	<session-config>
 		<session-timeout>40</session-timeout>
