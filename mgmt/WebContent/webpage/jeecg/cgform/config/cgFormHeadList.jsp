@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
 <t:base type="jquery,easyui,tools,autocomplete"></t:base>
-<!--add-start--Author:luobaoli  Date:20150607 for：增加表单树型列表-->
+
 <script type="text/javascript">
 	$(function() {
 		$('#formtree').tree({
@@ -23,7 +23,7 @@
 		$("#tablePropertyList").datagrid('reload',{jformCategory:jformCategory});
 	}
 </script>
-<!--add-end--Author:luobaoli  Date:20150607 for：增加表单树型列表-->
+
 <div class="easyui-layout" fit="true">
 <div region="west" style="width: 150px;" title="表单分类" split="true" collapsed="true">
 <div class="easyui-panel" style="padding: 1px;" fit="true" border="false">
@@ -38,9 +38,9 @@
 	<t:dgCol title="common.id" field="id" hidden="true"></t:dgCol>
 	<t:dgCol title="table.type" field="jformType" replace="single.table_1,master.table_2,slave.table_3" query="true"></t:dgCol>
 	<t:dgCol title="table.name" field="tableName" query="true" autocomplete="true" />
-	<!--add-start--Author:luobaoli  Date:20150607 for：增加表单分类展现-->
+	
 	<t:dgCol title="form.category" field="jformCategory" dictionary="bdfl"></t:dgCol>
-	<!--add-end--Author:luobaoli  Date:20150607 for：增加表单分类展现-->
+	
 	<t:dgCol title="table.description" field="content"></t:dgCol>
 	<t:dgCol title="common.version" field="jformVersion"></t:dgCol>
 	<t:dgCol title="is.tree" field="isTree" replace="common.yes_Y,common.no_N"></t:dgCol>
@@ -64,9 +64,9 @@
 	<t:dgToolBar title="custom.button" icon="icon-edit" url="cgformButtonController.do?cgformButton" funname="cgFormButton"></t:dgToolBar>
 	<t:dgToolBar title="js.enhance" icon="icon-edit" url="cgformEnhanceJsController.do?addorupdate" funname="enhanceJs"></t:dgToolBar>
 	<t:dgToolBar title="sql.enhance" icon="icon-edit" url="cgformButtonSqlController.do?addorupdate" funname="cgFormButtonSql"></t:dgToolBar>
-	<!--add-begin--Author:luobaoli  Date:20150630 for：新增java增强按钮 -->
+	
 	<t:dgToolBar title="java.enhance" icon="icon-edit" url="cgformEnhanceJavaController.do?addorupdate" funname="javaEnhance"></t:dgToolBar>
-	<!--add-end--Author:luobaoli  Date:20150630 for：新增java增强按钮 -->
+	
 	<t:dgToolBar title="form.export" icon="icon-putout" url="cgformSqlController.do?doMigrateOut" funname="doMigrateOut"></t:dgToolBar>
 	<t:dgToolBar title="form.import" icon="icon-put" url="cgformSqlController.do?inSqlFile" funname="toCgformMigrate"></t:dgToolBar>
 	<t:dgToolBar title="code.generate" icon="icon-add" url="generateController.do?gogenerate" funname="generate"></t:dgToolBar>
@@ -79,7 +79,7 @@
 		addOneTab('<t:mutiLang langKey="form.template"/>' , "cgformFtlController.do?cgformFtl2&formid="+id);
 	}
 
-	//数据库表生成表单
+	
 	function addToData(title,url,id,a,b){
   		$.dialog({
 			content: "url:"+url,
@@ -100,7 +100,7 @@
 		}, function(){
 		}).zindex();
 	}
-	//检查这个表是否已经存在了
+	
 	function checkIsExit(id,name){
 		$.post("cgFormHeadController.do?checkIsExit&&name="+name,function(data){
 			var d = $.parseJSON(data);
@@ -114,7 +114,7 @@
 			}
 		});
 	}
-	//删除这个配置
+	
 	function delThis(id){
 		doSubmit("cgFormHeadController.do?del&id="+id,"tablePropertyList");
 	}
@@ -177,13 +177,11 @@
 				return false;
 		    },
 		    cancelVal: '<t:mutiLang langKey="common.close"/>',
-		    cancel: true /*为true等价于function(){}*/
+		    cancel: true 
 		});
 	}
 	
-	/**
-	*	弹出菜单链接
-	*/
+	
 	function popMenuLink(tableName,content){
         $.dialog({
 			content: "url:cgFormHeadController.do?popmenulink&url=cgAutoListController.do?list&title="+tableName,
@@ -196,7 +194,7 @@
 		}).zindex();
 	}
 
-	//自定义按钮
+	
 	function cgFormButton(title,url,id){
 		var rowsData = $('#'+id).datagrid('getSelections');
 		if (!rowsData || rowsData.length==0) {
@@ -211,7 +209,7 @@
 		addOneTab('<t:mutiLang langKey="custom.button"/>', url);
 	}
 
-	//sql增强
+	
 	function cgFormButtonSql(title,url,id){
 		var rowsData = $('#'+id).datagrid('getSelections');
 		if (!rowsData || rowsData.length==0) {
@@ -223,7 +221,7 @@
 			return;
 		}
 		url += '&formId='+rowsData[0].id+"&tableName="+rowsData[0].tableName;
-		//addOneTab("按钮sql增强", url);
+		
 		$.dialog({
 			content: "url:"+url,
 			lock : true,
@@ -238,12 +236,12 @@
 				return false;
 		    },
 		    cancelVal: '<t:mutiLang langKey="common.close"/>',
-		    cancel: true /*为true等价于function(){}*/
+		    cancel: true 
 		});
 	}
 
 	
-	//js增强
+	
 	function enhanceJs(title,url,id){
 		var rowsData = $('#'+id).datagrid('getSelections');
 		if (!rowsData || rowsData.length==0) {
@@ -269,10 +267,10 @@
 				return false;
 		    },
 		    cancelVal: '<t:mutiLang langKey="common.close"/>',
-		    cancel: true /*为true等价于function(){}*/
+		    cancel: true 
 		});
 	}
-	//java增强
+	
 	function javaEnhance(title,url,id){
 		var rowsData = $('#'+id).datagrid('getSelections');
 		if (!rowsData || rowsData.length==0) {
@@ -298,11 +296,11 @@
 				return false;
 		    },
 		    cancelVal: '<t:mutiLang langKey="common.close"/>',
-		    cancel: true /*为true等价于function(){}*/
+		    cancel: true 
 		});
 	}
 
-	//表单 sql导出
+	
 	function doMigrateOut(title,url,id){
 		var rowData = $('#'+id).datagrid('getSelected');
 		if (!rowData) {
@@ -313,12 +311,12 @@
 		window.location.href= url;
 	}
 
-	//表单  sql导入
+	
 	function toCgformMigrate(){
 		openuploadwin('<t:mutiLang langKey="form.sqlimport"/>', 'cgformSqlController.do?toCgformMigrate', "tablePropertyList");
 	}
     <%--   update-end--Author:duanqilu  Date:20130910 for#211 升级SQL导入导出--%>	
-	//代码生成
+	
 	function generate(title,url,id){
 		var rowsData = $('#'+id).datagrid('getSelections');
 		if (!rowsData || rowsData.length==0) {
@@ -329,13 +327,13 @@
 			tip('<t:mutiLang langKey="common.please.select.one.record.to.edit"/>');
 			return;
 		}
-		//附表不能生成代码
+		
 		if("3" == rowsData[0].jformType){
 			tip('<t:mutiLang langKey="slave.table.can.not.generate.code"/>');
 			return;
 		}
 
-		//未激活的表，不允许生成代码
+		
 		if("N" == rowsData[0].isDbSynch){
 			tip('<t:mutiLang langKey="please.syncdb"/>');
 			return;
@@ -357,15 +355,11 @@
 				return false;
 		    },
 		    cancelVal: '<t:mutiLang langKey="common.close"/>',
-		    cancel: true /*为true等价于function(){}*/
+		    cancel: true 
 		});
 	}
 
-	/**
-	 * 获取列表中选中行的数据（多行）
-	 * @param field 数据中字段名-不传此参数则获取全部数据
-	 * @return 选中行的给定字段值，以逗号分隔
-	 */
+	
 	function getListSelections(){
 		var ids = '';
 		var rows = $("#tablePropertyList").datagrid("getSelections");
@@ -377,10 +371,7 @@
 		return ids;
 	}	
 	
-	/**
-	 * 以多种方式同步数据库
-	 * @param id 表单id
-	 */
+	
 	function doDbsynch(id,content){
 		var url = "url:cgFormHeadController.do?goCgFormSynChoice";
 		$.dialog({

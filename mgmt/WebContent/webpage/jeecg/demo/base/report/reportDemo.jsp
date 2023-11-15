@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
-<!-- context path -->
+
 <t:base type="jquery,easyui"></t:base>
 <script type="text/javascript" src="plug-in/Highcharts-2.2.5/js/highcharts.src.js"></script>
 <script type="text/javascript" src="plug-in/Highcharts-2.2.5/js/modules/exporting.src.js"></script>
@@ -97,7 +97,7 @@
 						},
 						exporting:{ 
 			                filename:'column',  
-			                url:'${ctxPath}/reportDemoController.do?export'//
+			                url:'${ctxPath}/reportDemoController.do?export'
 			            },
 						plotOptions : {
 							column : {
@@ -195,4 +195,3 @@
 		$(document.body).css("width","99.3%");
 	});
 </script>
-<!-- add-update--Author:jg_renjie  Date:20150613 for：页面自适应页面，不会出现左右滚动条 -->

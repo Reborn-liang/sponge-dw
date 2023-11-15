@@ -242,7 +242,7 @@
 				</t:tabs>
 			</div>
 			</t:formvalid>
-			<!-- 添加 附表明细 模版 -->
+			
 	<table style="display:none">
 	<tbody id="add_dwIndicatorSftpCtl_table_template">
 		<tr>

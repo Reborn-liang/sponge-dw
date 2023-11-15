@@ -7,7 +7,7 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <script type="text/javascript">
   $(function(){
-    //查看模式情况下,删除和上传附件功能禁止使用
+    
 	if(location.href.indexOf("load=detail")!=-1){
 		$(".jeecgDetail").hide();
 	}
@@ -27,7 +27,7 @@
   		frameElement.api.close();
   	}
   </script>
-<!-- 弹出页面窗口大小控制 -->
+
 <style type="text/css">
 #formobj {
 	height: 65%;
@@ -93,8 +93,8 @@
 								async : false,
 								cache : false,
 								type : 'POST',
-								url : url,// 请求的action路径
-								error : function() {// 请求失败处理函数
+								url : url,
+								error : function() {
 								},
 								success : function(data) {
 									var d = $.parseJSON(data);

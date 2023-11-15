@@ -11,13 +11,13 @@
 <script type="text/javascript">
 function browseFolder(path) {
     try {
-        var Message = "\u8bf7\u9009\u62e9\u6587\u4ef6\u5939"; //选择框提示信息
+        var Message = "\u8bf7\u9009\u62e9\u6587\u4ef6\u5939"; 
         var Shell = new ActiveXObject("Shell.Application");
-        var Folder = Shell.BrowseForFolder(0, Message, 64, 17); //起始目录为：我的电脑
+        var Folder = Shell.BrowseForFolder(0, Message, 64, 17); 
         if (Folder != null) {
-            Folder = Folder.items(); // 返回 FolderItems 对象
-            Folder = Folder.item(); // 返回 Folderitem 对象
-            Folder = Folder.Path; // 返回路径
+            Folder = Folder.items(); 
+            Folder = Folder.item(); 
+            Folder = Folder.Path; 
             if (Folder.charAt(Folder.length - 1) != "\\") {
                 Folder = Folder + "\\";
             }
@@ -45,7 +45,7 @@ function browseFolder(path) {
 }
 
 .t_table {
-	overflow: auto; /*让内容表格外面的div自动有滚动条*/
+	overflow: auto; 
 	margin-left: 0px;
 	margin-right: 0px;
 	width: auto;

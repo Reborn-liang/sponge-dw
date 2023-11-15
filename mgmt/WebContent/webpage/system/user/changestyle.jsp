@@ -13,11 +13,7 @@
 			<tr>
 				<td class="value"><input type="radio" value="default" name="indexStyle" /> <span>经典风格</span></td>
 			</tr>
-			<!--
-			<tr>
-				<td class="value"><input type="radio" value="bootstrap" name="indexStyle" /> <span>BootStrap风格</span></td>
-			</tr>
-			-->
+			
 			<tr>
 				<td class="value"><input type="radio" value="shortcut" name="indexStyle" /> <span>ShortCut风格</span></td>
 			</tr>
@@ -27,7 +23,7 @@
 			<tr>
 				<td class="value"><input type="radio" value="ace" name="indexStyle"  /><span>ACE平面风格</span></td>
 			</tr>
-			<!-- update-end--Author:gaofeng  Date:2014-01-24 for:新增首页风格  -->	
+				
 		</tbody>
 	</table>
 </t:formvalid>
@@ -41,13 +37,7 @@
 					return false;
 				}
 			});
-		/* 	var val2 = "${cssTheme}";
-			$("input[name='cssTheme']").each(function(){
-				if($(this).val()==val2){
-					$(this).attr("checked",true);
-					return false;
-				}
-			}); */
+		
 		});
 	</script>
 </html>

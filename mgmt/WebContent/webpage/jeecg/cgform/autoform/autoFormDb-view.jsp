@@ -46,7 +46,7 @@
 							<tr height="30px">
 						</c:if>
 								<td align="center"><label class="Validform_label"><b>${poVal.paramName}：</b></label></td>
-								<!-- 属性名称增加"#"为了避免和autoFormDb重复 -->
+								
 								<td class="value"><input type="text" name="#${poVal.paramName}" class="inputxt"/><span class="Validform_checktip"></span></td>
 						<c:if test="${status.count%2 == 0}">
 							</tr>

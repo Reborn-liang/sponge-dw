@@ -9,12 +9,12 @@
         <script>
             $(function(){
             	$(".menuSearch_Info").live("click",function(){
-            		//$(this).blur();
+            		
             			var url=$(this).attr("url");
             			var icon=$(this).attr("icon");
             			var id=$(this).attr("id");
             			var title=$(this).attr("title");
-            			//window.parent.close();
+            			
             			createwindow(title,url,1000,500);
             		})
             });

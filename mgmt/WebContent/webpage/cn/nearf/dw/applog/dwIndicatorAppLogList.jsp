@@ -23,26 +23,26 @@
  <script src = "webpage/cn/nearf/dw/applog/dwIndicatorAppLogList.js"></script>		
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
 		$("#dwIndicatorAppLogListtb").find("input[name='createDate_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});});
 		$("#dwIndicatorAppLogListtb").find("input[name='createDate_end']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});});
  });
  
-//导入
+
 function ImportXls() {
 	openuploadwin('Excel导入', 'dwIndicatorAppLogController.do?upload', "dwIndicatorAppLogList");
 }
 
-//导出
+
 function ExportXls() {
 	JeecgExcelExport("dwIndicatorAppLogController.do?exportXls","dwIndicatorAppLogList");
 }
 
-//模板下载
+
 function ExportXlsByT() {
 	JeecgExcelExport("dwIndicatorAppLogController.do?exportXlsByT","dwIndicatorAppLogList");
 }
-//点击切换状态
+
 function changeStatus(id){
 	$.ajax({
 		url:'dwIndicatorAppLogController.do?changeStatus&id='+id,

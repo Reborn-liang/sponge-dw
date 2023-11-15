@@ -7,7 +7,7 @@
   <t:base type="jquery,easyui,tools,DatePicker"></t:base>
   <script type="text/javascript" src="plug-in/ckfinder/ckfinder.js"></script>
   <script type="text/javascript">
-  //编写自定义JS代码
+  
   </script>
  </head>
  <body>

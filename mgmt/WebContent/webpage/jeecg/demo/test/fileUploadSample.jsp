@@ -11,11 +11,11 @@
 <script src="plug-in/jquery-plugs/fileupload/js/jquery.iframe-transport.js"></script>
 <script src="plug-in/jquery-plugs/fileupload/js/jquery.fileupload.js"></script>
 
-<!-- bootstrap just to have good looking page -->
+
 <script src="plug-in/jquery-plugs/fileupload/bootstrap/js/bootstrap.min.js"></script>
 <link href="plug-in/jquery-plugs/fileupload/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet" />
 
-<!-- we code these -->
+
 <link href="plug-in/jquery-plugs/fileupload/css/dropzone.css" type="text/css" rel="stylesheet" />
 <script src="plug-in/jquery-plugs/fileupload/js/myuploadfunction.js"></script>
 </head>

@@ -26,24 +26,24 @@
  <script src = "webpage/cn/nearf/dw/log/dwIndicatorHotMailCtlList.js"></script>		
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  			$("#dwIndicatorHotMailCtlListtb").find("input[name='createDate_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwIndicatorHotMailCtlListtb").find("input[name='createDate_end']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwIndicatorHotMailCtlListtb").find("input[name='updateDate_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwIndicatorHotMailCtlListtb").find("input[name='updateDate_end']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  });
  
-//导入
+
 function ImportXls() {
 	openuploadwin('Excel导入', 'dwIndicatorHotMailCtlController.do?upload', "dwIndicatorHotMailCtlList");
 }
 
-//导出
+
 function ExportXls() {
 	JeecgExcelExport("dwIndicatorHotMailCtlController.do?exportXls","dwIndicatorHotMailCtlList");
 }
 
-//模板下载
+
 function ExportXlsByT() {
 	JeecgExcelExport("dwIndicatorHotMailCtlController.do?exportXlsByT","dwIndicatorHotMailCtlList");
 }

@@ -10,7 +10,7 @@
 	  $.messager.confirm('提示信息', data.msg, function(r){
 			document.location="demoController.do?demoList";
 		});
-		//closetab('TAB方式添加');
+		
 	}
   </SCRIPT>
 </head>

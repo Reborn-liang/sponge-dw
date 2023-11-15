@@ -37,7 +37,7 @@
 				return false;
 		    },
 		    cancelVal: '关闭',
-		    cancel: true /*为true等价于function(){}*/
+		    cancel: true 
 		});
 	}
 function updateOneTab(title,url, id,width,height) {

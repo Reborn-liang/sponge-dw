@@ -45,15 +45,13 @@
   </div>
  </div>
 <<style>
-<!--
-.ui_content{width:600px !important; display:inline-block;*display:inline;zoom:1;text-align:left; }
--->
+
 </style>
  
  <script src = "webpage/cn/nearf/dw/indicator/dwIndicatorCtlList.js"></script>		
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  			$("#dwIndicatorCtlListtb").find("input[name='createDate_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwIndicatorCtlListtb").find("input[name='createDate_end']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwIndicatorCtlListtb").find("input[name='updateDate_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
@@ -91,17 +89,17 @@
   });
  }
 
-//导入
+
 function ImportXls() {
 	openuploadwin('导入', 'dwIndicatorCtlController.do?upload', "dwIndicatorCtlList");
 }
 
-//导出
+
 function ExportXls() {
 	JeecgExcelExport("dwIndicatorCtlController.do?exportXls","dwIndicatorCtlList");
 }
 
-//模板下载
+
 function ExportXlsByT() {
 	JeecgExcelExport("dwIndicatorCtlController.do?exportXlsByT","dwIndicatorCtlList");
 }

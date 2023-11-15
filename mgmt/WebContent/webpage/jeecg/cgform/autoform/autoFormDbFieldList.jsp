@@ -24,7 +24,7 @@
 			$(":input").attr("disabled","true");
 			$(".datagrid-toolbar").hide();
 		}
-		//将表格的表头固定
+		
 	    $("#autoFormDbField_table").createhftable({
 	    	height:'300px',
 			fixFooter:false
@@ -43,31 +43,7 @@
 	  	<td align="center" width="50px" bgcolor="#EEEEEE"><t:mutiLang langKey="common.operation"/></td>
 	</tr>
 	<tbody id="add_autoFormDbField_table">
-	<!-- 
-	<c:if test="${fn:length(autoFormDbFieldList)  <= 0 }">
-			<tr>
-				<td align="center"><div style="width: 40px;" name="xh">1</div></td>
-				<td align="center"><input style="width:20px;"  type="checkbox" name="ck"/></td>
-					<input name="autoFormDbFieldList[0].id" type="hidden"/>
-					<input name="autoFormDbFieldList[0].createName" type="hidden"/>
-					<input name="autoFormDbFieldList[0].createBy" type="hidden"/>
-					<input name="autoFormDbFieldList[0].createDate" type="hidden"/>
-					<input name="autoFormDbFieldList[0].updateName" type="hidden"/>
-					<input name="autoFormDbFieldList[0].updateBy" type="hidden"/>
-					<input name="autoFormDbFieldList[0].updateDate" type="hidden"/>
-					<input name="autoFormDbFieldList[0].sysOrgCode" type="hidden"/>
-					<input name="autoFormDbFieldList[0].sysCompanyCode" type="hidden"/>
-					<input name="autoFormDbFieldList[0].autoFormDbId" type="hidden"/>
-				  <td align="left">
-					  	<input name="autoFormDbFieldList[0].fieldName" maxlength="32" 
-					  		type="text" class="inputxt"  style="width:120px;">
-					</td>
-					<td align="center">
-						<div style="width: 50px;" align="center">[<a name="delAutoFormDbFieldOneBtn" href="javascript:void(0)" onclick="deleteOne(this)"><t:mutiLang langKey="common.delete"/></a>]</div>
-					</td>
-   			</tr>
-	</c:if>
-	 -->
+	
 	<c:if test="${fn:length(autoFormDbFieldList)  > 0 }">
 		<c:forEach items="${autoFormDbFieldList}" var="poVal" varStatus="stuts">
 			<tr>

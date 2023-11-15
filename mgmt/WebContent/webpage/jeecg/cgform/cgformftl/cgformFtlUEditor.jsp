@@ -43,10 +43,10 @@
 <script type="text/javascript">
 
 var leipiEditor = UE.getEditor('ftlContent',{
-            //allowDivTransToP: false,//阻止转换div 为p
-            toolleipi:true,//是否显示，设计器的 toolbars
+            
+            toolleipi:true,
             textarea: 'design_content',   
-            //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个            /*
+            
             toolbars: [[
             'fullscreen', 'source', '|', 'undo', 'redo', '|',
             'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
@@ -59,38 +59,27 @@ var leipiEditor = UE.getEditor('ftlContent',{
             'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
             'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
             'print', 'preview', 'searchreplace', 'help', 'drafts'
-        ]],/*
-           toolbars:[[
-            'fullscreen', 'source', '|', 'undo', 'redo', '|','bold', 'italic', 'underline', 'fontborder', 'strikethrough',  'removeformat',
-             '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist','|', 'fontfamily', 'fontsize',
-              '|', 'indent', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 
-               'link', 'unlink',  '|',  'horizontal',  'spechars',  'wordimage', '|', 'inserttable',
-                'deletetable',  'mergecells',  'splittocells']],
-            //focus时自动清空初始化时的内容            */
-            //autoClearinitialContent:true,
-            //关闭字数统计
+        ]],
+            
+            
             wordCount:false,
-            //关闭elementPath
+            
             elementPathEnabled:false,
-            //默认的编辑区域高度
+            
             initialFrameHeight:400
-            ///,iframeCssUrl:"css/bootstrap/css/bootstrap.css" //引入自身 css使编辑器兼容你网站css
-            //更多其他参数，请参考ueditor.config.js中的配置项
+            
+            
         });
 
  var leipiFormDesign = {
-    /*执行控件*/
+    
     exec : function (method) {
         leipiEditor.execCommand(method);
     },
-    /*
-        Javascript 解析表单
-        template 表单设计器里的Html内容
-        fields 字段总数
-    */
+    
    parse_form:function(template,fields)
     {
-        //正则  radios|checkboxs|select 匹配的边界 |--|  因为当使用 {} 时js报错
+        
         var preg =  /(\|-<span(((?!<span).)*leipiplugins=\"(radios|checkboxs|select|popup)\".*?)>(.*?)<\/span>-\||<(img|input|textarea|select).*?(<\/select>|<\/textarea>|\/>))/gi,
         preg_attr =/(\w+)=\"(.?|.+?)\"/gi,
         preg_group =/<input.*?\/>/gi;
@@ -103,7 +92,7 @@ var leipiEditor = UE.getEditor('ftlContent',{
             var parse_attr = new Array(),attr_arr_all = new Object(),name = '', select_dot = '' , is_new=false;
             var p0 = plugin;
             var tag = p6 ? p6 : p4;
-            //alert(tag + " \n- t1 - "+p1 +" \n-2- " +p2+" \n-3- " +p3+" \n-4- " +p4+" \n-5- " +p5+" \n-6- " +p6);
+            
 
             if(tag == 'radios' || tag == 'checkboxs')
             {
@@ -138,8 +127,8 @@ var leipiEditor = UE.getEditor('ftlContent',{
                     oField[attr] = val;
                     parse_attr.push(oField);
             }) 
-            /*alert(JSON.stringify(parse_attr));return;*/
-             if(tag =='checkboxs') /*复选组  多个字段 */
+            
+             if(tag =='checkboxs') 
              {
                 plugin = p0;
                 plugin = plugin.replace('|-','');
@@ -178,7 +167,7 @@ var leipiEditor = UE.getEditor('ftlContent',{
                     
                     if(!attr_arr_all['options']) attr_arr_all['options'] = new Array();
                     attr_arr_all['options'].push(option);
-                    //if(!option['checked']) option['checked'] = '';
+                    
                     var checked = option['checked'] !=undefined ? 'checked="checked"' : '';
                     attr_arr_all['content'] +='<input type="checkbox" name="'+option['name']+'" value="'+option['value']+'"  '+checked+'/>'+option['value']+'&nbsp;';
 
@@ -194,7 +183,7 @@ var leipiEditor = UE.getEditor('ftlContent',{
                 });
                 attr_arr_all['content'] += '</span>';
 
-                //parse
+                
                 template = template.replace(plugin,attr_arr_all['content']);
                 template_parse = template_parse.replace(plugin,'{'+name+'}');
                 template_parse = template_parse.replace('{|-','');
@@ -204,7 +193,7 @@ var leipiEditor = UE.getEditor('ftlContent',{
 
              }else if(name)
             {
-                if(tag =='radios') /*单选组  一个字段*/
+                if(tag =='radios') 
                 {
                     plugin = p0;
                     plugin = plugin.replace('|-','');
@@ -225,7 +214,7 @@ var leipiEditor = UE.getEditor('ftlContent',{
                         option['name'] = attr_arr_all['name'];
                         if(!attr_arr_all['options']) attr_arr_all['options'] = new Array();
                         attr_arr_all['options'].push(option);
-                        //if(!option['checked']) option['checked'] = '';
+                        
                         var checked = option['checked'] !=undefined ? 'checked="checked"' : '';
                         attr_arr_all['content'] +='<input type="radio" name="'+attr_arr_all['name']+'" value="'+option['value']+'"  '+checked+'/>'+option['value']+'&nbsp;';
 
@@ -236,8 +225,8 @@ var leipiEditor = UE.getEditor('ftlContent',{
                 {
                     attr_arr_all['content'] = is_new ? plugin.replace(/leipiNewField/,name) : plugin;
                 }
-                //attr_arr_all['itemid'] = fields;
-                //attr_arr_all['tag'] = tag;
+                
+                
                 template = template.replace(plugin,attr_arr_all['content']);
                 template_parse = template_parse.replace(plugin,'{'+name+'}');
                 template_parse = template_parse.replace('{|-','');
@@ -256,60 +245,54 @@ var leipiEditor = UE.getEditor('ftlContent',{
             pno++;
         })
         var parse_form = new Object({
-            'fields':fields,//总字段数
-            'template':template,//完整html
-            'parse':template_parse,//控件替换为{data_1}的html
-            'data':template_data,//控件属性
-            'add_fields':add_fields//新增控件
+            'fields':fields,
+            'template':template,
+            'parse':template_parse,
+            'data':template_data,
+            'add_fields':add_fields
         });
         return JSON.stringify(parse_form);
     },
-    /*type  =  save 保存设计 versions 保存版本  close关闭 */
+    
     fnCheckForm : function ( type ) {
         if(leipiEditor.queryCommandState( 'source' ))
-            leipiEditor.execCommand('source');//切换到编辑模式才提交，否则有bug
+            leipiEditor.execCommand('source');
             
         if(leipiEditor.hasContents()){
-            leipiEditor.sync();/*同步内容*/
+            leipiEditor.sync();
             
             alert("你点击了保存,这里可以异步提交，请自行处理....");
 			$("#ftl").val(leipiEditor.getContent());
             return false;
-            //--------------以下仅参考-----------------------------------------------------------------------------------------------------
+            
             var type_value='',formid=0,fields=$("#fields").val(),formeditor='';
 
             if( typeof type!=='undefined' ){
                 type_value = type;
             }
-            //获取表单设计器里的内容
-            formeditor=leipiEditor.getContent();
-            //解析表单设计器控件
-            var parse_form = this.parse_form(formeditor,fields);
-            //alert(parse_form);
             
-             //异步提交数据
+            formeditor=leipiEditor.getContent();
+            
+            var parse_form = this.parse_form(formeditor,fields);
+            
+            
+             
              $.ajax({
                 type: 'POST',
                 url : 'cgformFtlController.do?saveEditor',
-                //dataType : 'json',
+                
                 data : {'type' : type_value,'formid':formid,'parse_form':parse_form},
                 success : function(data){
                     if(confirm('查看js解析后，提交到服务器的数据，请临时允许弹窗'))
                     {
                         win_parse=window.open('','','width=800,height=600');
-                        //这里临时查看，所以替换一下，实际情况下不需要替换  
+                        
                         data  = data.replace(/<\/+textarea/,'&lt;textarea');
                         win_parse.document.write('<textarea style="width:100%;height:100%">'+data+'</textarea>');
                         win_parse.focus();
                     }
                     
-                    /*
-                  if(data.success==1){
-                      alert('保存成功');
-                      $('#submitbtn').button('reset');
-                  }else{
-                      alert('保存失败！');
-                  }*/
+                    
                 }
             });
             
@@ -319,7 +302,7 @@ var leipiEditor = UE.getEditor('ftlContent',{
             return false;
         }
     } ,
-   // 预览表单
+   
     fnReview : function (){
         if(leipiEditor.queryCommandState( 'source' ))
             leipiEditor.execCommand('source');
@@ -329,7 +312,7 @@ var leipiEditor = UE.getEditor('ftlContent',{
             
             var type_value='',formid=0,fields=$("#fields").val(),formeditor='';
             formeditor=leipiEditor.getContent();
-            //解析表单设计器控件
+            
             var parse_form = this.parse_form(formeditor,fields);    
            var style= '<link rel="stylesheet" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/bootstrap.css">'+
            ' <link rel="stylesheet" href="plug-in/Formdesign/js/ueditor/formdesign/leipi.style.css">';
@@ -339,9 +322,9 @@ var leipiEditor = UE.getEditor('ftlContent',{
                 dataType : 'json',
                 data : {'action' :'edit','parseForm':parse_form},
                 success : function(msg){
-						//alert(msg);
+						
                     	 W.$.dialog({
-                 			content:style+msg.msg,// "url:cgformFtlController.do?formEkeditor&editorType=preview&id=${cgformFtlPage.id}",
+                 			content:style+msg.msg,
                  			lock : true,
                  			title:"模板预览 [${cgformFtlPage.cgformName}]",
                  			opacity : 0.5,
@@ -369,7 +352,7 @@ var leipiEditor = UE.getEditor('ftlContent',{
 };
 function setFtlContent(){
     if(leipiEditor.queryCommandState( 'source' ))
-            leipiEditor.execCommand('source');//切换到编辑模式才提交，否则有bug
+            leipiEditor.execCommand('source');
             
     if(leipiEditor.hasContents()){
         leipiEditor.sync();

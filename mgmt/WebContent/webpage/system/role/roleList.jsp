@@ -46,14 +46,14 @@ function userListbyrole(id,roleName) {
 	$('#function-panel').panel("refresh" );
 	
 }
-//删除角色
+
 function delRole(id){
 	var tabName= 'roleList';
 	var url= 'roleController.do?delRole&id='+id;
 	$.dialog.confirm('<t:mutiLang langKey="confirm.delete.this.record"/>', function(){
 		doSubmit(url,tabName);
 		rowid = '';
-		$("#function-panel").html("");//删除角色后，清空对应的权限
+		$("#function-panel").html("");
 	}, function(){
 	});
 }

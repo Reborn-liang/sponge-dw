@@ -18,10 +18,10 @@
 </div>
 <script type="text/javascript">
 function addbytab() {
-	//var title =findThisTitle();
+	
 	document.location="demoController.do?aorudemo&type=table";
-	//addOneTab("TAB方式添加", "demoController.do?aorudemo&type=table&isIframe");
-	//closeThisTab(title);
+	
+	
 }
 function updatebytab(){
 var rows = $("#addDemoList").datagrid("getSelections");
@@ -31,10 +31,10 @@ var rows = $("#addDemoList").datagrid("getSelections");
 	}
 	var id=rows[0].id;
 	
-	//var title =findThisTitle();
+	
 	document.location="demoController.do?aorudemo&type=tableupdate&id="+id;
-	//addOneTab("TAB方式编辑", "demoController.do?aorudemo&id="+id);
-	//closeThisTab(title);
+	
+	
 }
 function closeThisTab(title){
     window.top.$('#maintabs').tabs('close',title); 

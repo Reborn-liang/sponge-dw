@@ -7,11 +7,11 @@
 <t:base type="jquery,easyui,tools"></t:base>
 <SCRIPT type="text/javascript">
   function test(data) {
-	//alert(data.msg);
+	
 	$.messager.confirm('提示信息', data.msg, function(r){
 	document.location="demoController.do?demoList";
 			});
-		//closetab('TAB方式添加');
+		
 	}
   </SCRIPT>
 </head>

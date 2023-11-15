@@ -37,7 +37,7 @@
 			$(":input").attr("disabled","true");
 			$(".datagrid-toolbar").hide();
 		}
-		//将表格的表头固定
+		
 	    $("#dwIndicatorColumnCtl_table").createhftable({
 	    	height:'300px',
 			width:'auto',
@@ -48,7 +48,7 @@
 	    onLoadFromColumnList();
     }); 
     
-    //schema改变,table值随之改变
+    
     function onFactSchemaChange(index){
     	var modelCode = $("#modelCodeInd").val();
     	console.log("onFactSchemaChange, model code:" + modelCode)
@@ -79,7 +79,7 @@
 		});
 	}
     
-    //编辑时,带出table下拉列表的值
+    
     function onLoadFromTableList(){
     	var modelCode = $("#modelCodeInd").val();
     	if(modelCode==null || modelCode=='undefined'){
@@ -103,7 +103,7 @@
             				try{
             					var fromTable = $("select[name='dwIndicatorColumnCtlList["+index+"].fromTable']");
             					fromTable.empty();
-            					//fromTable.append("<option value=''>---请选择---</option>");
+            					
             					var result=JSON.parse(data).obj;
             					 for(var i= 0; i<result.length ; i++){
             						 if(result[i].name!=tableVal){
@@ -122,7 +122,7 @@
     		});
      });
    } 
-    //schema改变和table改变,column随之改变
+    
     function onFromColumnSchemaChange(index){
     	var schema = $("select[name='dwIndicatorColumnCtlList["+index+"].fromSchema']").val();
     	var tableVal = $("select[name='dwIndicatorColumnCtlList["+index+"].fromTable']").val();
@@ -150,7 +150,7 @@
     	}
     }
     
-    //编辑时带出column列表的值
+    
       function onLoadFromColumnList(){
       	var Table = $("select:not([name^='dwIndicatorColumnCtlList[#'])[name$='].fromTable']"); 
     	var Schema = $("select:not([name^='dwIndicatorColumnCtlList[#'])[name$='].fromSchema']");

@@ -14,26 +14,24 @@
 			url : 'departController.do?setPFunction&selfId=${depart.id}',
             width: 155,
             onSelect : function(node) {
-//                alert(node.text);
+
                 changeOrgType();
             }
         });
-        if(!$('#cc').val()) { // 第一级，只显示公司选择项
+        if(!$('#cc').val()) { 
             var orgTypeSelect = $("#orgType");
             var companyOrgType = '<option value="1" <c:if test="${orgType=='1'}">selected="selected"</c:if>><t:mutiLang langKey="common.company"/></option>';
             orgTypeSelect.empty();
             orgTypeSelect.append(companyOrgType);
-        } else { // 非第一级，不显示公司选择项
+        } else { 
             $("#orgType option:first").remove();
         }
-        /* if($("#id").val()) {
-            $('#cc').combotree('disable');
-        } */
-        if('${empty pid}' == 'false') { // 设置新增页面时的父级
+        
+        if('${empty pid}' == 'false') { 
             $('#cc').combotree('setValue', '${pid}');
         }
 	});
-    function changeOrgType() { // 处理组织类型，不显示公司选择项
+    function changeOrgType() { 
         var orgTypeSelect = $("#orgType");
         var optionNum = orgTypeSelect.get(0).options.length;
         

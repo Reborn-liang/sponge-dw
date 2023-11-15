@@ -26,29 +26,24 @@ if(upload_method == null || upload_method.length() == 0){
 <script type="text/javascript">
 
 	function showStartHandingMask(){    
-    //alert('显示遮罩');  
+    
     	$("<div class=\"datagrid-mask\" style=\"background:#666666;\"></div>").css({display:"block",width:$("body")[0].offsetWidth+10,height:$(window).height()}).appendTo("body");     
     	$("<div class=\"datagrid-mask-msg\"></div>").html("正在处理，请稍候……").appendTo("body").css({display:"block",left:($(document.body).outerWidth(true) - 190) / 2,top:($(window).height() - 45) / 2});    
 	}    
 	
-	/**  
-	 * 释放页面  
-	 * @return  
-	 */    
+	    
 	function releaseMaskPage(){    
 	    $(".datagrid-mask,.datagrid-mask-msg").remove();    
 	}    
 	 
-	 /** 
-     * 创建一个锁屏，并且有一个确定按钮的弹出框，展示信息 
-     */  
+	   
     function alertShowInfoTip(msg,title) {  
     	releaseMaskPage();
         $.dialog.setting.zIndex = 19990;  
         title = title?title:"提示信息";  
         $.dialog({  
                 title:title,  
-                //icon:'tips.gif',  
+                
                 lock:true,  
                 content: msg,  
                 width:400,  

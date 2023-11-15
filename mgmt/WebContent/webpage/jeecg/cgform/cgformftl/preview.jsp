@@ -7,12 +7,8 @@
 <link rel="stylesheet" href="plug-in/Validform/css/style.css" type="text/css"/>
 <link rel="stylesheet" href="plug-in/Validform/css/tablefrom.css" type="text/css"/>
     <link rel="stylesheet" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/bootstrap.css">
-    <!--[if lte IE 6]>
-    <link rel="stylesheet" type="text/css" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/bootstrap-ie6.css">
-    <![endif]-->
-    <!--[if lte IE 7]>
-    <link rel="stylesheet" type="text/css" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/ie.css">
-    <![endif]-->
+    
+    
     <link rel="stylesheet" href="plug-in/Formdesign/js/ueditor/formdesign/leipi.style.css">
 </head>
 <body>
@@ -40,7 +36,7 @@ $(function(){
 });
 function parse_form(template,fields)
     {
-	//正则  radios|checkboxs|select 匹配的边界 |--|  因为当使用 {} 时js报错 (plugins|fieldname|fieldflow)
+	
     var preg =  /(\|-<span(((?!<span).)*plugins=\"(radios|checkboxs|select)\".*?)>(.*?)<\/span>-\||<(img|input|textarea|select).*?(<\/select>|<\/textarea>|\/>))/gi,preg_attr =/(\w+)=\"(.?|.+?)\"/gi,preg_group =/<input.*?\/>/gi;
     if(!fields) fields = 0;
 
@@ -51,7 +47,7 @@ function parse_form(template,fields)
         var parse_attr = new Array(),attr_arr_all = new Object(),name = '', select_dot = '' , is_new=false;
         var p0 = plugin;
         var tag = p6 ? p6 : p4;
-        //alert(tag + " \n- t1 - "+p1 +" \n-2- " +p2+" \n-3- " +p3+" \n-4- " +p4+" \n-5- " +p5+" \n-6- " +p6);
+        
 
         if(tag == 'radios' || tag == 'checkboxs')
         {
@@ -86,8 +82,8 @@ function parse_form(template,fields)
             oField[attr] = val;
             parse_attr.push(oField);
         })
-        /*alert(JSON.stringify(parse_attr));return;*/
-        if(tag =='checkboxs') /*复选组  多个字段 */
+        
+        if(tag =='checkboxs') 
         {
             plugin = p0;
             plugin = plugin.replace('|-','');
@@ -143,7 +139,7 @@ function parse_form(template,fields)
             });
             attr_arr_all['content'] += '</span>';
 
-            //parse
+            
             template = template.replace(plugin,attr_arr_all['content']);
             template_parse = template_parse.replace(plugin,'{'+name+'}');
             template_parse = template_parse.replace('{|-','');
@@ -153,7 +149,7 @@ function parse_form(template,fields)
 
         }else if(name)
         {
-            if(tag =='radios') /*单选组  一个字段*/
+            if(tag =='radios') 
             {
                 plugin = p0;
                 plugin = plugin.replace('|-','');
@@ -185,8 +181,8 @@ function parse_form(template,fields)
             {
                 attr_arr_all['content'] = is_new ? plugin.replace(/NEWFIELD/,name) : plugin;
             }
-            //attr_arr_all['itemid'] = fields;
-            //attr_arr_all['tag'] = tag;
+            
+            
             template = template.replace(plugin,attr_arr_all['content']);
             template_parse = template_parse.replace(plugin,'{'+name+'}');
             template_parse = template_parse.replace('{|-','');
@@ -211,11 +207,11 @@ function parse_form(template,fields)
     var view = template.replace(/{\|-/g,'');
     view = view.replace(/-\|}/g,'');
     var parse_form = new Object({
-        'fields':fields,//总字段数
-        'template':template,//完整html
+        'fields':fields,
+        'template':template,
         'parse':view,
-        'data':template_data,//控件属性
-        'add_fields':add_fields//新增控件
+        'data':template_data,
+        'add_fields':add_fields
     });
     return JSON.stringify(parse_form);
     }</script></body>

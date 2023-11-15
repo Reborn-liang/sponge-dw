@@ -7,7 +7,7 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 </head>
 <script type="text/javascript">
-  //初始化下标
+  
 	function resetTrNum(tableId) {
 		$tbody = $("#"+tableId+"");
 		$tbody.find('>tr').each(function(i){
@@ -69,7 +69,7 @@
 		<t:tab href="jeecgOrderMainController.do?jeecgOrderCustomList&goOrderCode=${jeecgOrderMainPage.goOrderCode}" icon="icon-search" title="客户明细" id="Custom"></t:tab>
 	</t:tabs></div>
 </t:formvalid>
-<!-- 添加 产品明细 模版 -->
+
 <table style="display: none">
 	<tbody id="add_jeecgOrderProduct_table_template">
 		<tr>

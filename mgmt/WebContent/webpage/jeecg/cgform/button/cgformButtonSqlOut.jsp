@@ -27,15 +27,15 @@
 			type : 'POST',
 			contentType : 'application/json', 
 			dataType:"json",
-			url : "cgformButtonSqlOutInController.do?list&tableName="+tableName,// 请求的action路径
-			error : function() {// 请求失败处理函数
+			url : "cgformButtonSqlOutInController.do?list&tableName="+tableName,
+			error : function() {
 				alert("出错了");
 				frameElement.api.close();
 			},
 			success : function(data) {
 				var d = data;
 				if (d.success) {
-					//document.getElementById("tableList").innerHTML.val(d.obj);
+					
 					$('#tableList').html(d.obj);
 				}else{
 					document.getElementById("tableList").innerHTML.val("");

@@ -11,8 +11,8 @@ function typeGridTree_AddType() {
 		return;
 	}
 	if (node.state == "closed" || node.children) {
-	} else {//叶结点
-		node = $("#"+treeCtrlId).treegrid('getParent', node.id); //获取当前节点的父节点
+	} else {
+		node = $("#"+treeCtrlId).treegrid('getParent', node.id); 
 	}
 	var groupid = node.id.substring(1);
 	add("参数值录入("+node.text+")", "systemController.do?addorupdateType&typegroupid="+groupid, treeCtrlId);
@@ -27,8 +27,8 @@ function typeGridTree_UpdateType() {
 	var nodeid = node.id.substring(1);
 	if (node.state == "closed" || node.children) {
 		createwindow("字典编辑", "systemController.do?aouTypeGroup&id="+nodeid);
-	} else {//叶结点
-		var pnode = $("#"+treeCtrlId).treegrid('getParent', node.id); //获取当前节点的父节点
+	} else {
+		var pnode = $("#"+treeCtrlId).treegrid('getParent', node.id); 
 		var groupid = pnode.id.substring(1);
 		createwindow("参数值编辑", "systemController.do?addorupdateType&typegroupid="+groupid+"&id="+nodeid);
 	}
@@ -97,7 +97,7 @@ function typeGridTree_UpdateType() {
 <input type="hidden" id="typeGroupId" name="typeGroupId" value="">
 --%>
 
-<%--// add-start--Author:zhangguoming  Date:20140928 for：数据字典修改--%>
+<%--
 <div id="main_typegroup_list" class="easyui-layout" fit="true">
     <div region="center" style="padding: 1px;">
         <t:datagrid name="typeGridTree" title="common.data.dictionary" actionUrl="systemController.do?typeGroupGrid"
@@ -149,4 +149,4 @@ function typeGridTree_UpdateType() {
         $('#userListpanel').empty();
     }
 </script>
-<%--// add-end--Author:zhangguoming  Date:20140928 for：数据字典修改--%>
+<%--

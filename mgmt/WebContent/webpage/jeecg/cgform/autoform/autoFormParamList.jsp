@@ -25,7 +25,7 @@
 			$(":input").attr("disabled","true");
 			$(".datagrid-toolbar").hide();
 		}
-		//将表格的表头固定
+		
 	    $("#autoFormParam_table").createhftable({
 	    	height:'100px',
 			width:'auto',
@@ -36,7 +36,7 @@
     function deleteOne(obj){
        	var tableId = $(obj).parent().parent().parent().parent().attr("id");
        	$(obj).parent().parent().parent().remove();
-       	/*刷新拥有该列的表的序列*/
+       	
        	resetTrNum($("input[name='dbType']:checked").val()+"_div #"+tableId);
     }
 </script>
@@ -64,55 +64,7 @@
 				  </td>
 	</tr>
 	<tbody id="add_autoFormParam_table">
-	<!-- 
-	<c:if test="${fn:length(autoFormParamList)  <= 0 }">
-			<tr>
-				<td align="center"><div style="width: 40px;" name="xh">1</div></td>
-				<td align="center"><input style="width:20px;"  type="checkbox" name="ck"/></td>
-					<input name="autoFormParamList[0].id" type="hidden"/>
-					<input name="autoFormParamList[0].createName" type="hidden"/>
-					<input name="autoFormParamList[0].createBy" type="hidden"/>
-					<input name="autoFormParamList[0].createDate" type="hidden"/>
-					<input name="autoFormParamList[0].updateName" type="hidden"/>
-					<input name="autoFormParamList[0].updateBy" type="hidden"/>
-					<input name="autoFormParamList[0].updateDate" type="hidden"/>
-					<input name="autoFormParamList[0].sysOrgCode" type="hidden"/>
-					<input name="autoFormParamList[0].sysCompanyCode" type="hidden"/>
-					<input name="autoFormParamList[0].autoFormDbId" type="hidden""/>
-				  <td align="left">
-					  	<input name="autoFormParamList[0].paramName" maxlength="32" 
-					  		type="text" class="inputxt"  style="width:120px;"
-					               datatype="*"
-					               >
-					  <label class="Validform_label" style="display: none;"><t:mutiLang langKey="form.param.name"/></label>
-					</td>
-				  <td align="left">
-					  	<input name="autoFormParamList[0].paramDesc" maxlength="32" 
-					  		type="text" class="inputxt"  style="width:120px;"
-					               
-					               >
-					  <label class="Validform_label" style="display: none;"><t:mutiLang langKey="form.param.desc"/></label>
-					</td>
-				  <td align="left">
-					  	<input name="autoFormParamList[0].paramValue" maxlength="32" 
-					  		type="text" class="inputxt"  style="width:120px;"
-					               
-					               >
-					  <label class="Validform_label" style="display: none;"><t:mutiLang langKey="form.param.value"/></label>
-					</td>
-				  <td align="left">
-					  	<input name="autoFormParamList[0].seq" maxlength="32" 
-					  		type="text" class="inputxt"  style="width:120px;"
-					               
-					               >
-					  <label class="Validform_label" style="display: none;"><t:mutiLang langKey="common.order"/></label>
-					</td>
-					 <td align="center">
-					  	<div style="width: 50px;" align="center">[<a class="delAutoFormParamOneBtn" href="javascript:void(0)" onclick="deleteOne(this)"><t:mutiLang langKey="common.delete"/></a>]</div>
-					</td>
-   			</tr>
-	</c:if>
-	 -->
+	
 	<c:if test="${fn:length(autoFormParamList)  > 0 }">
 		<c:forEach items="${autoFormParamList}" var="poVal" varStatus="stuts">
 			<tr>

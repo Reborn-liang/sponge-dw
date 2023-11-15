@@ -27,30 +27,30 @@
 				if ($.browser.msie) {
 					if (version == '9.0') {
 						
-						this.edit.setHeight((window.screen.height-400)); //设置高度
+						this.edit.setHeight((window.screen.height-400)); 
 
 					}
 					if (version == '6.0') {
 						
-						this.edit.setHeight((window.screen.height-500)); //设置高度
+						this.edit.setHeight((window.screen.height-500)); 
 					}
 					if (version == '7.0') {
-						this.edit.setHeight((window.screen.height-330)); //设置高度
+						this.edit.setHeight((window.screen.height-330)); 
 					} else {
-						this.edit.setHeight((window.screen.height) * 67 / 100); //设置高度
+						this.edit.setHeight((window.screen.height) * 67 / 100); 
 					}
 
 				}
 				if ($.browser.webkit) {
-					this.edit.setHeight((window.screen.height-220)); //设置高度
+					this.edit.setHeight((window.screen.height-220)); 
 				}
 				if ($.browser.mozilla) {
-					this.edit.setHeight((window.screen.height-280)); //设置高度
+					this.edit.setHeight((window.screen.height-280)); 
 				}
 			}
 		});
 	});
-<%--// 自定义插件 #1
+<%--
 	KindEditor.lang({
 		example1 : '打印'
 	});
@@ -86,7 +86,7 @@
 <object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0
 		pluginspage="plug-in/lodop/install_lodop32.exe"></embed> </object>
 <script type="text/javascript">
-	var LODOP; //声明为全局变量 
+	var LODOP; 
 	function prn1_preview(content) {
 		CreateOneFormPage(content);
 		LODOP.PREVIEW();

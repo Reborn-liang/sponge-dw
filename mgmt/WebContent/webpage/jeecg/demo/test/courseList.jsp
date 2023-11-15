@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
 <script type="text/javascript" charset="utf-8">
-	/*
-	 *	excel导出
-	 */
+	
 	function courseListExportXls() {
 		JeecgExcelExport("courseController.do?exportXls","courseList");
 	}

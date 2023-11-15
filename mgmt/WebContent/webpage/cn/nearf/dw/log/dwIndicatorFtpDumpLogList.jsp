@@ -24,22 +24,22 @@
  <script src = "webpage/cn/nearf/dw/log/dwIndicatorFtpDumpLogList.js"></script>		
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  			$("#dwIndicatorFtpDumpLogListtb").find("input[name='createDate_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwIndicatorFtpDumpLogListtb").find("input[name='createDate_end']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  });
  
-//导入
+
 function ImportXls() {
 	openuploadwin('Excel导入', 'dwIndicatorFtpDumpLogController.do?upload', "dwIndicatorFtpDumpLogList");
 }
 
-//导出
+
 function ExportXls() {
 	JeecgExcelExport("dwIndicatorFtpDumpLogController.do?exportXls","dwIndicatorFtpDumpLogList");
 }
 
-//模板下载
+
 function ExportXlsByT() {
 	JeecgExcelExport("dwIndicatorFtpDumpLogController.do?exportXlsByT","dwIndicatorFtpDumpLogList");
 }

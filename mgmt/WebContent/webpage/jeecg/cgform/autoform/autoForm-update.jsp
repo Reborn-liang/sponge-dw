@@ -14,8 +14,8 @@
 	  var setting = {
 			  check: {
 					enable: true
-					//chkStyle: "radio",
-					//radioType: "level"
+					
+					
 				},
 				data: {
 					simpleData: {
@@ -40,7 +40,7 @@
 	  function showIconForTree(treeId, treeNode) {
 		return !treeNode.isParent;
 	  }
-	  //初始化主数据源
+	  
 	  function initMainTableSourceSelect(){
 		  var ztree = $.fn.zTree.getZTreeObj("dbSelect");
 		  var node = ztree.getNodesByParam("pid", 0, null);
@@ -64,29 +64,10 @@
 		 });
 		 $.fn.zTree.init($("#styleSelect"), stylesetting, styleDate);
 		 initMainTableSourceSelect();
-		//自定义easyui表单验证规则
-		/* var flag;
-		 $.extend($.fn.validatebox.defaults.rules, {
-			 uniqueNm: {
-		          validator: function (value,param){
-		        	$.post(
-		        		'autoFormController.do?checkFormNm',
-		        		{formName:value},
-		        		function(data){
-		        			var d = $.parseJSON(data);
-		        			if(d.msg == '0' || d.msg == '1'){
-		        				$("#formName").removeClass(); 
-		        			} else{
-		        				return false;
-		        			}
-		        		}
-		            );
-		          },
-		          message: '表单名称重复，请重新输入'
-		        }
-		 }); */
+		
+		
 		 
-		//添加生成按钮的onclick事件
+		
 		 $("#createCode").click(function(){
 			 var formdbId = getNodeId();
 			 if(formdbId == ''){
@@ -108,7 +89,7 @@
 						editor.ready(
 						function(){
 							setContent();
-							//editor.setContent($("#formContent").val()+d.msg.replace(new RegExp(/(&quot;)/g),"'"));
+							
 							editor.execCommand('inserthtml', d.msg.replace(new RegExp(/(&quot;)/g),"'"));
 						});
 					}
@@ -122,7 +103,7 @@
 		 $.dialog({
 			content: 'url:'+addurl,
 			lock : true,
-			//zIndex:1990,
+			
 			width: '100%',
 			height: '100%',
 			title: "<t:mutiLang langKey='common.add'/>",
@@ -149,11 +130,11 @@
 				return false;
 		    },
 		    cancelVal: '<t:mutiLang langKey='common.cancel'/>',
-		    cancel: true /*为true等价于function(){}*/
+		    cancel: true 
 		}).max().zindex();
 	 }
 	 function doUpdate(){
-		 //获取选中的父节点
+		 
 		 var id = getNodeId();
 		 if(id == null || id == ''){
 			 alert('请选择需要编辑的表单数据源');
@@ -163,7 +144,7 @@
 		  $.dialog({
 			content: 'url:'+addurl,
 			lock : true,
-			//zIndex:1990,
+			
 			width: 700,
 			height: 400,
 			title: "<t:mutiLang langKey='common.edit'/>",
@@ -190,7 +171,7 @@
 				return false;
 		    },
 		    cancelVal: '<t:mutiLang langKey='common.cancel'/>',
-		    cancel: true /*为true等价于function(){}*/
+		    cancel: true 
 		}).max().zindex();
 	 }
 	 function doDelete(){
@@ -228,7 +209,7 @@
 		 });
 	 }
 	 
-	//改成多选时取得多个ID根据","分割
+	
 	   function getNodeId(){
 			 var treeObj = $.fn.zTree.getZTreeObj("dbSelect");
 			 var nodes = treeObj.getCheckedNodes(true);
@@ -260,7 +241,7 @@
 	 
    
    function doExit() {
-	 	//document.location="autoFormController.do?autoForm";
+	 	
 	   var cur = window.top.$('#maintabs').tabs('getSelected');
 	   var index = window.top.$('#maintabs').tabs('getTabIndex',cur);
 	   window.top.$('#maintabs').tabs('close',index);
@@ -333,9 +314,7 @@
 				<div style="width:99.5%;overflow-y:auto;">
 		       		<div class="panel-header">
 			       		<div class="panel-title">选择默认模板样式</div>
-			       		<!-- <div class="panel-tool">
-			       			<a href="javascript:void(0)" class="layout-button-up"></a>
-			       		</div> -->
+			       		
 		       		</div>
 		       	    <ul id="styleSelect" class="ztree"></ul>
 		       </div>
@@ -378,43 +357,39 @@
 <script type="text/javascript" charset="utf-8" src="plug-in/Formdesign/js/ueditor/ueditor.all.js?2023"> </script>
 <script type="text/javascript" charset="utf-8" src="plug-in/Formdesign/js/ueditor/lang/zh-cn/zh-cn.js?2023"></script>
 <script type="text/javascript" charset="utf-8" src="plug-in/Formdesign/js/ueditor/formdesign/leipi.formdesign.v4.js?2023"></script>
-<!--  <script type="text/javascript" charset="utf-8" src="plug-in/Formdesign/js/ueditor/formdesign/weixinplugs.js"></script>  -->
+
 <script type="text/javascript">
 var leipiEditor = UE.getEditor('content',{
-    //allowDivTransToP: false,//阻止转换div 为p
-    toolleipi:true,//是否显示，设计器的 toolbars
+    
+    toolleipi:true,
     textarea: 'design_content',   
-    //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个            /*
+    
     toolbars: [[
-    'fullscreen', 'source', '|', 'undo', 'redo', '|',//'date', 'time',
+    'fullscreen', 'source', '|', 'undo', 'redo', '|',
     'fontfamily', 'fontsize', '|', 'indent', '|',
-    //'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-    //'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-    //'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-    //'directionalityltr', 'directionalityrtl', 'indent', '|',
-    'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', //'touppercase', 'tolowercase', '|',
-    //'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-    //'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map',  'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
-    //'horizontal',  'spechars', 'snapscreen', 'wordimage', '|',
+    
+    
+    
+    
+    'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 
+    
+    
+    
     'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', '|',
-    //'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',//'charts', '|',
-    //'print', 'preview', 'searchreplace', 'help', 'drafts'
+    
+    
     ]],
     wordCount:false,
     elementPathEnabled:false,
     initialFrameHeight:400
 });
 
-/* 1.传入函数,命令里执行该函数得到参数表,添加到已有参数表里 */
+
 leipiEditor.ready(function() {
 	leipiEditor.execCommand('serverparam', 'id', '${autoFormPage.id}');
 });
 
-/**
- leipiEditor.ready(function() {
- 	console.debug(leipiEditor.queryCommandValue('serverparam')); //返回参数值键值对的对象
- });
- */
+
 
 var leipiFormDesign = {
 	   exec : function (method) {
@@ -422,7 +397,7 @@ var leipiFormDesign = {
 	    },
 	   parse_form:function(template,fields)
 	    {
-		   //正则  radios|checkboxs|select 匹配的边界 |--|  因为当使用 {} 时js报错 (plugins|fieldname|fieldflow)
+		   
 	        var preg =  /(\|-<span(((?!<span).)*plugins=\"(radios|checkboxs|select)\".*?)>(.*?)<\/span>-\||<(img|input|textarea|select).*?(<\/select>|<\/textarea>|\/>))/gi,preg_attr =/(\w+)=\"(.?|.+?)\"/gi,preg_group =/<input.*?\/>/gi;
 	        if(!fields) fields = 0;
 
@@ -433,7 +408,7 @@ var leipiFormDesign = {
 	            var parse_attr = new Array(),attr_arr_all = new Object(),name = '', select_dot = '' , is_new=false;
 	            var p0 = plugin;
 	            var tag = p6 ? p6 : p4;
-	            //alert(tag + " \n- t1 - "+p1 +" \n-2- " +p2+" \n-3- " +p3+" \n-4- " +p4+" \n-5- " +p5+" \n-6- " +p6);
+	            
 
 	            if(tag == 'radios' || tag == 'checkboxs')
 	            {
@@ -468,8 +443,8 @@ var leipiFormDesign = {
 	                oField[attr] = val;
 	                parse_attr.push(oField);
 	            })
-	            /*alert(JSON.stringify(parse_attr));return;*/
-	            if(tag =='checkboxs') /*复选组  多个字段 */
+	            
+	            if(tag =='checkboxs') 
 	            {
 	                plugin = p0;
 	                plugin = plugin.replace('|-','');
@@ -524,7 +499,7 @@ var leipiFormDesign = {
 	                });
 	                attr_arr_all['content'] += '</span>';
 
-	                //parse
+	                
 	                template = template.replace(plugin,attr_arr_all['content']);
 	                template_parse = template_parse.replace(plugin,'{'+name+'}');
 	                template_parse = template_parse.replace('{|-','');
@@ -534,7 +509,7 @@ var leipiFormDesign = {
 
 	            }else if(name)
 	            {
-	                if(tag =='radios') /*单选组  一个字段*/
+	                if(tag =='radios') 
 	                {
 	                    plugin = p0;
 	                    plugin = plugin.replace('|-','');
@@ -567,8 +542,8 @@ var leipiFormDesign = {
 	                {
 	                    attr_arr_all['content'] = is_new ? plugin.replace(/NEWFIELD/,name) : plugin;
 	                }
-	                //attr_arr_all['itemid'] = fields;
-	                //attr_arr_all['tag'] = tag;
+	                
+	                
 	                template = template.replace(plugin,attr_arr_all['content']);
 	                template_parse = template_parse.replace(plugin,'{'+name+'}');
 	                template_parse = template_parse.replace('{|-','');
@@ -593,38 +568,38 @@ var leipiFormDesign = {
 	        var view = template.replace(/{\|-/g,'');
 	        view = view.replace(/-\|}/g,'');
 	        var parse_form = new Object({
-	            'fields':fields,//总字段数
-	            'template':template,//完整html
+	            'fields':fields,
+	            'template':template,
 	            'parse':view,
-	            'data':template_data,//控件属性
-	            'add_fields':add_fields//新增控件
+	            'data':template_data,
+	            'add_fields':add_fields
 	        });
 	        return JSON.stringify(parse_form);
 	    },
-	    /*type  =  save 保存设计 versions 保存版本  close关闭 */
+	    
 	    fnCheckForm : function ( type ) {
 	        if(formEditor.queryCommandState( 'source' ))
-	            formEditor.execCommand('source');//切换到编辑模式才提交，否则有bug
+	            formEditor.execCommand('source');
 
 	        if(formEditor.hasContents()){
-	            formEditor.sync();/*同步内容*/
+	            formEditor.sync();
 
-	            //--------------以下仅参考-----------------------------------------------------------------------------------------------------
+	            
 	            var type_value='',formid=0,fields=$("#fields").val(),formeditor='';
 
 	            if( typeof type!=='undefined' ){
 	                type_value = type;
 	            }
-	            //获取表单设计器里的内容
+	            
 	            formeditor=formEditor.getContent();
-	            //解析表单设计器控件
+	            
 	            var parse_form = this.parse_form(formeditor,fields);
-	            //alert(parse_form);
-	            //异步提交数据
+	            
+	            
 	            $.ajax({
 	                type: 'POST',
 	                url : '${ctx}/config/form/processor',
-	                //dataType : 'json',
+	                
 	                data : {'type' : type_value,'formid':'${form.id}','parse_form':parse_form},
 	                success : function(data){
 						if(data == true) {
@@ -642,7 +617,7 @@ var leipiFormDesign = {
 	            return false;
 	        }
 	    } ,
-	   // 预览表单
+	   
 	    fnReview : function (){
 	        if(leipiEditor.queryCommandState( 'source' ))
 	            leipiEditor.execCommand('source');
@@ -656,7 +631,7 @@ var leipiFormDesign = {
 	            window.open('','mywin',"menubar=0,toolbar=0,status=0,resizable=1,left=0,top=0,scrollbars=1,width=" +(screen.availWidth-10) + ",height=" + (screen.availHeight-50) + "\"");
 
 	            document.formobj.action="autoFormController.do?review";
-	            document.formobj.submit(); //提交表单
+	            document.formobj.submit(); 
 	           
 	        } else {
 	            alert('表单内容不能为空！');
@@ -666,7 +641,7 @@ var leipiFormDesign = {
 	};
 	function setContent(){
 	    if(leipiEditor.queryCommandState( 'source' ))
-	            leipiEditor.execCommand('source');//切换到编辑模式才提交，否则有bug
+	            leipiEditor.execCommand('source');
 	            
 	    if(leipiEditor.hasContents()){
 	        leipiEditor.sync();

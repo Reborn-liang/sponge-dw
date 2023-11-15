@@ -10,13 +10,13 @@
   	<script type="text/javascript">
   		$(function(){
   			$("#viewSubmit").click(function () {
-  				//document.formobj.target="mywin";
+  				
   				var url = "autoFormController.do?viewContent";
   				var param = $("#formobj").serialize();
   				url = url +"&"+param;
                 window.open(url,'mywin',"menubar=0,toolbar=0,status=0,resizable=1,left=0,top=0,scrollbars=1,width=" +(screen.availWidth-10) + ",height=" + (screen.availHeight-50) + "\"");
-                //document.formobj.action= "autoFormController.do?viewContent";
-                //document.formobj.submit();
+                
+                
                 frameElement.api.opener.winclose();
   			});
   		});
@@ -35,7 +35,7 @@
 				<c:forEach items="${paramList}" var="poVal" varStatus="status">
 				<tr height="30px">
 				   <td align="center"><label class="Validform_label"><b>${poVal}：</b></label></td>
-				   <!-- 属性名称增加"#"为了避免和autoFormDb重复 -->
+				   
 				   <td class="value"><input type="text" name="${poVal}" class="inputxt"/><span class="Validform_checktip"></span></td>
 				</tr>
 				</c:forEach>
@@ -49,7 +49,7 @@
 						<option value="view" selected>查看模式</option>
 						<option value="add">添加模式</option>
 						<option value="update">编辑模式</option>
-						<!-- <option value="addorupdate">智能提交模式</option> -->
+						
 					</select>
 				</td>
 			</tr>

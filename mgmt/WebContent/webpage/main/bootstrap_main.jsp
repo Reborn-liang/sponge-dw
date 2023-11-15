@@ -43,11 +43,11 @@
 </style>
 </head>
 <body>
-<!-- 头部菜单导航-->
+
 <div id="header">
 <div class="navbar">
 <div class="navbar-inner">
-<div class="container-fluid"><a class="brand" href="http://www.jeecg.org" target="_blank"><t:mutiLang langKey="common.platform"/> &nbsp;&nbsp;<span class="slogan"></span></a>
+<div class="container-fluid"><a class="brand" href="http:
 <div class="nav-no-collapse bootstrap-menu">
 
 <ul class="nav pull-right usernav">
@@ -67,16 +67,16 @@
 	</li>
 </ul>
 </div>
-<!-- /.nav-collapse --></div>
 </div>
-<!-- /navbar-inner --></div>
-<!-- /navbar --></div>
-<!-- End #header -->
+</div>
+</div>
+</div>
 
-<!-- 中间 -->
+
+
 <div id="wrapper" class="bootstrap-center"></div>
 
-<!-- 底部 -->
+
 <footer class="footer">
 <div class="container">
 <ul class="footer-links">

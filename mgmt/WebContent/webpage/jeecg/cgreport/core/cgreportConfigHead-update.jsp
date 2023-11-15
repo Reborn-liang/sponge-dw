@@ -19,7 +19,7 @@
 			}
 		});
   });
- //初始化下标
+ 
 	function resetTrNum(tableId) {
 		$tbody = $("#"+tableId+"");
 		$tbody.find('>tr').each(function(i){
@@ -54,32 +54,32 @@
 			});
 		});
 	}
-	function browseImages(inputId, Img) {// 图片管理器，可多个上传共用
+	function browseImages(inputId, Img) {
 		var finder = new CKFinder();
-		finder.selectActionFunction = function(fileUrl, data) {//设置文件被选中时的函数 
+		finder.selectActionFunction = function(fileUrl, data) {
 			$("#" + Img).attr("src", fileUrl);
 			$("#" + inputId).attr("value", fileUrl);
 		};
-		finder.resourceType = 'Images';// 指定ckfinder只为图片进行管理
-		finder.selectActionData = inputId; //接收地址的input ID
-		finder.removePlugins = 'help';// 移除帮助(只有英文)
+		finder.resourceType = 'Images';
+		finder.selectActionData = inputId; 
+		finder.removePlugins = 'help';
 		finder.defaultLanguage = 'zh-cn';
 		finder.popup();
 	}
-	function browseFiles(inputId, file) {// 文件管理器，可多个上传共用
+	function browseFiles(inputId, file) {
 		var finder = new CKFinder();
-		finder.selectActionFunction = function(fileUrl, data) {//设置文件被选中时的函数 
+		finder.selectActionFunction = function(fileUrl, data) {
 			$("#" + file).attr("href", fileUrl);
 			$("#" + inputId).attr("value", fileUrl);
 			decode(fileUrl, file);
 		};
-		finder.resourceType = 'Files';// 指定ckfinder只为文件进行管理
-		finder.selectActionData = inputId; //接收地址的input ID
-		finder.removePlugins = 'help';// 移除帮助(只有英文)
+		finder.resourceType = 'Files';
+		finder.selectActionData = inputId; 
+		finder.removePlugins = 'help';
 		finder.defaultLanguage = 'zh-cn';
 		finder.popup();
 	}
-	function decode(value, id) {//value传入值,id接受值
+	function decode(value, id) {
 		var last = value.lastIndexOf("/");
 		var filename = value.substring(last + 1, value.length);
 		$("#" + id).text(decodeURIComponent(filename));
@@ -117,7 +117,7 @@
 			<td align="right"><label class="Validform_label"><t:mutiLang langKey="common.returntxtfield"/>:</label></td>
 			<td class="value" colspan="3"><input id="returnTxtField" name="returnTxtField" type="text" style="width: 150px" class="inputxt" value="${cgreportConfigHeadPage.returnTxtField}"> <span class="Validform_checktip"></span></td>
         </tr>
-     <!-- 		update-end--Author:huangzq  Date:20151129 for：[753]【在线报表】扩展增加俩字段，非必填-------------------- -->   
+        
 	</table>
 	<div style="width: auto; height: 200px;"><%-- 增加一个div，用于调节页面大小，否则默认太小 --%>
 		<div style="width: 800px; height: 1px;"></div>
@@ -125,7 +125,7 @@
 		<t:tabs id="tt" iframe="false" tabPosition="top" fit="false"><t:tab href="cgreportConfigHeadController.do?cgreportConfigItemList&id=${cgreportConfigHeadPage.id}" icon="icon-search" title="dynamic.report.config.detail" id="cgreportConfigItem"></t:tab></t:tabs>
 	</div>
 </t:formvalid>
-<!-- 添加 附表明细 模版 -->
+
 <table style="display: none">
 	<tbody id="add_cgreportConfigItem_table_template">
 		<tr>

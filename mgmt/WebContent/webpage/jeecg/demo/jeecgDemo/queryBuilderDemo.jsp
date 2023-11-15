@@ -2,9 +2,9 @@
 <%@include file="/context/mytags.jsp"%>
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <script>
-//去掉sysUtil.js中定义的原默认右键菜单
-//$.fn.datagrid.defaults.onHeaderContextMenu =null;
-//$.fn.treegrid.defaults.onHeaderContextMenu =null;
+
+
+
 </script>
 <div class="easyui-layout" fit="true">
 <div region="center" style="padding: 1px;">
@@ -34,7 +34,7 @@
 			<div data-options="region:'east',split:true" style="width:130px">
 <div class="easyui-accordion" style="width:120px;height:300px;">
 		<div title="查询历史" data-options="iconCls:'icon-search'" style="padding:0px;">
-			<ul id="tt" class="easyui-tree" data-options="onClick:function(node){//单击事件  
+			<ul id="tt" class="easyui-tree" data-options="onClick:function(node){
        historyQuery( node.id);  
     },ondbClick: function(node){alert('s');
 				$(this).tree('beginEdit',node.target);
@@ -59,13 +59,13 @@
 				rownumbers: true,
 				animate: true,
 				fitColumns: true,
-				//url: 'sqlbuilder.json',//可以预加载条件
+				
 				method: 'get',
-				idField: 'id', autoEditing: true,          //该属性启用双击行时自定开启该行的编辑状态
-                extEditing: false,           //该属性启用行编辑状态的 ExtEditing 风格效果，该属性默认为 true。
+				idField: 'id', autoEditing: true,          
+                extEditing: false,           
                 singleEditing: false ,
 				treeField: 'field',toolbar:toolbar,onClickRow: function (e) {
-                   $('#tg').treegrid('beginEdit',e);//'beginEdit‘方法必须有一个参数
+                   $('#tg').treegrid('beginEdit',e);
                 }
 			">
 		<thead>
@@ -298,7 +298,7 @@
 			for(var i=0;i<his.length;i++){
 				if(his[i])appendTree(i,his[i].name);
 			}
-  	 	}//restoreheader();
+  	 	}
 	});
 
 
@@ -330,7 +330,7 @@ function queryBuilder() {
 
 	jeecgDemoList2search();
  }
-//查询历史操作
+
 function saveHistory(){
 	var history=new Array();
 	for(var i=0;i<his.length;i++){
@@ -359,34 +359,34 @@ function appendTree(id,name){
          });
 }
 function saveHeader1(){
-	var cols = storage.get( 'DemohiddenColumns');//alert(cols.length+cols);
+	var cols = storage.get( 'DemohiddenColumns');
 	var init=true;
 	if(cols){
 		init =false;
 	}
- //var columnsFields =$('#jeecgDemoList2').datagrid('getColumnFields');
+ 
  var columnsFields =$('#jeecgDemoList2').datagrid('getColumns');
  var hiddencolumns = [],  columsDetail;
 
    for (var i=0;i< columnsFields.length;i++) {i.hidable=true;
-                      //  columsDetail = $('#jeecgDemoList2').datagrid("getColumnOption", columnsFields[i]);
+                      
 			if(init&&columnsFields[i].hidden){
 				hiddencolumns.push({field:columnsFields[i].field,hidden:columnsFields[i].hidden,visible:false});
 			}else{hiddencolumns.push({field:columnsFields[i].field,hidden:columnsFields[i].hidden});
 			}
-   }//alert(JSON.stringify(hiddencolumns));
+   }
 	storage.set( 'DemohiddenColumns',JSON.stringify(hiddencolumns));
 }
 function restoreheader1(){
 	
-	var cols = storage.get( 'DemohiddenColumns');//alert(cols.length+cols);
+	var cols = storage.get( 'DemohiddenColumns');
 	if(!cols){
 		return;
 	}
 	for(var i=0;i<cols.length;i++){
 		try{
 		if(cols.visible)$('#jeecgDemoList2').datagrid((cols[i].hidden==true?'hideColumn':'showColumn'),cols[i].field);
-}catch(e){//alert(e+"-"+cols[i].field)
+}catch(e){
 }
 
 	}

@@ -40,7 +40,7 @@
 $(function() {
 	var li_east = 0;
 });
-//数据规则权数
+
 function  operationData(fucntionId){
 	if(li_east == 0){
 	   $('#system_function_functionList').layout('expand','east'); 

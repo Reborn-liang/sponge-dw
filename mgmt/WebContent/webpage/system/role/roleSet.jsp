@@ -47,12 +47,12 @@
 		var node = $('#functionid').tree('getChecked');
 		var cnodes = '';
 		var pnodes = '';
-		var pnode = null; //保存上一步所选父节点
+		var pnode = null; 
 		for ( var i = 0; i < node.length; i++) {
 			if ($('#functionid').tree('isLeaf', node[i].target)) {
 				cnodes += node[i].id + ',';
-				pnode = $('#functionid').tree('getParent', node[i].target); //获取当前节点的父节点
-				while (pnode!=null) {//添加全部父节点
+				pnode = $('#functionid').tree('getParent', node[i].target); 
+				while (pnode!=null) {
 					pnodes += pnode.id + ',';
 					pnode = $('#functionid').tree('getParent', pnode.target); 
 				}

@@ -29,12 +29,10 @@
 </t:formvalid>
 <script type="text/javascript" src="plug-in/login/js/crypto-js.min.js"></script>
 <script type="text/javascript">
-	// 默认的 KEY 与 iv 如果没有给
+	
 	const KEY = CryptoJS.enc.Utf8.parse("9qJhN9A5jytWA4*a");
 	const IV = CryptoJS.enc.Utf8.parse('9qJhN9A5jytWA4*a');
-	/**
-	 * AES加密 ：字符串 key iv  返回base64
-	 */
+	
 	function Encrypt(word, keyStr, ivStr) {
 		let key = KEY;
 		let iv = IV;
@@ -51,11 +49,7 @@
 		return CryptoJS.enc.Base64.stringify(encrypted.ciphertext);
 
 	}
-	/**
-	 * AES 解密 ：字符串 key iv  返回base64
-	 *
-	 * @return {string}
-	 */
+	
 	function Decrypt(word, keyStr, ivStr) {
 		let key  = KEY;
 		let iv = IV;

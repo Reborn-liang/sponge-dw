@@ -116,8 +116,8 @@ function lockuploadify(url, id) {
 		async : false,
 		cache : false,
 		type : 'POST',
-		url : url,// 请求的action路径
-		error : function() {// 请求失败处理函数
+		url : url,
+		error : function() {
 		
 		
 		},
@@ -136,7 +136,7 @@ function lockuploadify(url, id) {
 <%--<a href="#" class="easyui-linkbutton" plain="true" icon="icon-search" onClick="choose_297e201048183a730148183ad85c0001()">选择</a>--%>
 <%--<a href="#" class="easyui-linkbutton" plain="true" icon="icon-redo" onClick="clearAll_297e201048183a730148183ad85c0001();">清空</a>--%>
 <script type="text/javascript">
-//    var windowapi = frameElement.api, W = windowapi.opener;
+
     function choose_297e201048183a730148183ad85c0001() {
         if (typeof(windowapi) == 'undefined') {
             $.dialog({content: 'url:departController.do?departSelect', zIndex: 2100, title: '<t:mutiLang langKey="common.department.list"/>', lock: true, width: 400, height: 350, left: '85%', top: '65%', opacity: 0.4, button: [

@@ -8,17 +8,17 @@
     <link rel="stylesheet" type="text/css" href="plug-in/lhgDialog/skins/default.css">
     <script type="text/javascript">
         function saveNoteInfo() {
-            //type1 自定义按钮提交
-            //iframe = frameElement.contentWindow;
-            //saveObj();
+            
+            
+            
 
-            //type2 直接提交
-            //$('#btn_sub').click();
+            
+            
 
-            //type3重写 callback函数防止关闭
+            
             $('#btn_sub').click();
         }
-        //重写了回调,然后自己控制关闭以及刷新
+        
         function noteSubmitCallback(data) {
             var win = frameElement.api.opener;
             if (data.success == true) {

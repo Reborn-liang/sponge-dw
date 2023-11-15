@@ -13,12 +13,12 @@
 		 $.ajax({url:'dwIndicatorCtlController.do?getTableNameOrColumnFromInfomation&schema='+schema, success: function(data) {
 				try {
 					var factSelect = $("#factTable");
-					factSelect.empty(); //clean data first
+					factSelect.empty(); 
 					var result = JSON.parse(data).obj;
 					for(var i=0; i<result.length; i++){
-				        //alert("name:"+result[i].name+", id:"+result[i].id);
+				        
 						if(factTable == result[i].id){
-							//console.log("<option value='"+result[i].id+"'" +" selected='selected'>"+result[i].name+"</option>");
+							
 				        	factSelect.append("<option value='"+result[i].id+"'" +" selected='selected'>"+result[i].name+"</option>");				        	
 				        }else{
 				        	factSelect.append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
@@ -40,10 +40,10 @@
 		 $.ajax({url:'dwIndicatorCtlController.do?getTableNameOrColumnFromInfomation&schema='+schema, success: function(data) {
 				try {
 					var dimSelect = $("#dimTable");
-					dimSelect.empty(); //clean data first
+					dimSelect.empty(); 
 					var result = JSON.parse(data).obj;
 					for(var i=0; i<result.length; i++){
-				        //alert("name:"+result[i].name+", id:"+result[i].id);
+				        
 				        if(dimTable == result[i].id){
 				        	dimSelect.append("<option value='"+result[i].id+"'" +" selected='selected'>"+result[i].name+"</option>");
 				        }else{

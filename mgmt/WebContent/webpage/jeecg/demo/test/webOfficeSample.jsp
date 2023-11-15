@@ -1,19 +1,14 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-
 <html>
 <head>
 <TITLE>weboffice演示页面${webRoot}</TITLE>
 <LINK href="${webRoot}/plug-in/webOffice/style.css" type=text/css rel=stylesheet>
 <SCRIPT src="${webRoot}/plug-in/webOffice/main.js" type=text/javascript></SCRIPT>
-<!-- --------------------=== 调用Weboffice初始化方法 ===--------------------- -->
+
 <SCRIPT language=javascript event=NotifyCtrlReady for=WebOffice1>
-/****************************************************
-*
-*	在装载完Weboffice(执行<object>...</object>)
-*	控件后执行 "WebOffice1_NotifyCtrlReady"方法
-*
-****************************************************/
+
     WebOffice_Event_Flash("NotifyCtrlReady");
 	WebOffice1_NotifyCtrlReady()
 </SCRIPT>
@@ -28,16 +23,12 @@
 </SCRIPT>
 
 <SCRIPT language=javascript>
-/****************************************************
-*
-*		控件初始化WebOffice方法
-*
-****************************************************/
+
 function WebOffice1_NotifyCtrlReady() {
 	document.all.WebOffice1.SetWindowText("授权XX(可通过接口自定义)", 0);
 	document.all.WebOffice1.OptionFlag |= 128;
-	// 新建文档
-	//document.all.WebOffice1.LoadOriginalFile("", "doc");
+	
+	
 	spnWebOfficeInfo.innerText="----   您电脑上安装的WebOffice版本为:V" + document.all.WebOffice1.GetOcxVersion() +"\t\t\t本实例是根据版本V6044编写";
 }
 var flag=false;
@@ -51,11 +42,7 @@ function menuOnClick(id){
 		id.style.display="block";
 	}
 }
-/****************************************************
-*
-*		接收office事件处理方法
-*
-****************************************************/
+
 var vNoCopy = 0;
 var vNoPrint = 0;
 var vNoSave = 0;
@@ -108,7 +95,7 @@ function WebOffice1_NotifyWordEvent(eventname) {
 	}else if(eventname=="WindowSelectionChange"){
 		if(vNoCopy){
 			document.all.WebOffice1.lContinue = 0;
-			//alert("此文档已经禁止复制");
+			
 		}else{
 			document.all.WebOffice1.lContinue = 1;
 		}
@@ -116,11 +103,11 @@ function WebOffice1_NotifyWordEvent(eventname) {
 	    if(vClose==0){
 	    	document.all.WebOffice1.lContinue=0;
 	    } else{
-	    	//alert("word");
+	    	
 		    document.all.WebOffice1.lContinue = 1;
 		  }
  }
-	//alert(eventname); 
+	
 }
 </SCRIPT>
 <META content="MSHTML 6.00.2900.5921" name=GENERATOR>
@@ -147,7 +134,7 @@ function WebOffice1_NotifyWordEvent(eventname) {
 		<TR>
 			<TD class=leftTableData vAlign=top width="15%">
 			<DIV class=menuItem onclick="menuOnClick('chc')">常用接口调用</DIV>
-			<DIV id=chc style="DISPLAY: none"><!-- ---------------=== 该处文件格式的value不可以自定义 ===------------------------- --> <SELECT id=doctype size=1 name=doctype>
+			<DIV id=chc style="DISPLAY: none"> <SELECT id=doctype size=1 name=doctype>
 				<OPTION value=doc selected>Word</OPTION>
 				<OPTION value=xls>Excel</OPTION>
 				<OPTION value=wps>wps</OPTION>
@@ -224,13 +211,13 @@ function WebOffice1_NotifyWordEvent(eventname) {
 			<DIV id=other style="DISPLAY: none"><INPUT language=javascript class=btn onclick="return bToolBar_FullScreen_onclick()" type=button value="全  屏" name=bToolBar_FullScreen> <INPUT
 				class=btn id=CreateFile32 onclick=TestVBA() type=button value=VBA调用 name=CreateFile32> <INPUT class=btn onclick="return UnActiveExcel()" type=button value=退出Excel编辑状态 name=EnableClose1></DIV>
 			</TD>
-			<TD class=TableData vAlign=top width="85%"><!-- -----------------------------== 装载weboffice控件 ==--------------------------------- --> <SCRIPT>
+			<TD class=TableData vAlign=top width="85%"> <SCRIPT>
 									var s = ""
 										s += "<object id=WebOffice1 height=500 width='100%' style='LEFT: 0px; TOP: 0px' classid='clsid:E77E049B-23FC-4DB8-B756-60529A35FAD5' codebase='${webRoot}/plug-in/webOffice/weboffice_v6.0.5.0.cab#Version=6,0,5,0'>"
 										s +="<param name='_ExtentX' value='6350'><param name='_ExtentY' value='6350'>"
 										s +="</OBJECT>"			
 										document.write(s)
-								</SCRIPT> <!-- --------------------------------== 结束装载控件 ==----------------------------------- --></TD>
+								</SCRIPT> </TD>
 		</TR>
 	</TBODY>
 </TABLE>

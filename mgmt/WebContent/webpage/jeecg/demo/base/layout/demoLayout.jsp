@@ -10,7 +10,7 @@
 		if (data.success) {
 			parent.tip(data.msg);
 			parent.reloadTable();
-			$("#btnreset").click();//清空表单
+			$("#btnreset").click();
 		}else{
 			parent.$.messager.alert("错误",data.msg);
 		}

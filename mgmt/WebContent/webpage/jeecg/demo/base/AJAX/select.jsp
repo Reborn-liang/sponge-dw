@@ -105,14 +105,14 @@
 	var opt0 = ["省份","地级市","市、县级市、县"];
 	var selectID_arr2=["provinceid","cityid","countyid"];
 	var province_index; 
-	  //初始化下拉框
+	  
     function init_select(){
         init_title();
         init_province();
         bind_province();
-//         init_select();
+
     }
-	 //初始化提示标题
+	 
 	function init_title()
 	{
     	for(var k = 0;k<selectID_arr2.length;k++){
@@ -120,7 +120,7 @@
             select_obj.options[0]=new Option(opt0[k],opt0[k]);
         }
     }
-	//初始化省份
+	
     function init_province(){
         var province_select_obj = document.getElementById(selectID_arr2[0]);
         var province_len = province_city_county_data.length;
@@ -128,13 +128,13 @@
             province_select_obj.options[i+1] = new Option(province_city_county_data[i].province,province_city_county_data[i].province);
         }
     }
-	// //给省份绑定onchange事件
+	
     function bind_province(){
         var province_select_obj = document.getElementById(selectID_arr2[0]);
         province_select_obj.onchange=function(){
             var opt_index =province_select_obj.selectedIndex;
             if(opt_index!=0){
-                province_index = opt_index-1;   //每个省份的序号比 option 的下标要小1
+                province_index = opt_index-1;   
                 init_city(province_index);
                 bind_city();
                 init_county(province_index,0);
@@ -144,7 +144,7 @@
             }
         }
     }
-    //选择一个省份才能初始化地级市
+    
     function init_city(index){
         clear_city();
         var city_len = province_city_county_data[index].city.length;
@@ -153,13 +153,13 @@
         }
         document.getElementById(selectID_arr2[1]).options[1].selected = true;
     }
-    //清除地级市信息
+    
     function clear_city(){
         var city_select_obj = document.getElementById(selectID_arr2[1]);
-        city_select_obj.options.length=0;  //每次选中一个新的省份 都重新删除地级市的信息
-        init_title();      //重新初始化标题
+        city_select_obj.options.length=0;  
+        init_title();      
     }
-    //给地级市绑定onchange事件
+    
     function bind_city(){
         var city_select_obj = document.getElementById(selectID_arr2[1]);
         city_select_obj.onchange=function(){
@@ -171,7 +171,7 @@
             }
         }
     }
-    //选择一个地级市后才能初始化县
+    
     function init_county(index,city_index){
         clear_county();
         var county_len = province_city_county_data[index].city[city_index].county.length;
@@ -180,11 +180,10 @@
         }
         document.getElementById(selectID_arr2[2]).options[1].selected = true;
     }
-    //清除县城信息
+    
     function clear_county(){
         var county_select_obj = document.getElementById(selectID_arr2[2]);
-        county_select_obj.options.length=0;  //每次选中一个新的地级市 都重新删除县的信息
-        init_title();      //重新初始化标题
+        county_select_obj.options.length=0;  
+        init_title();      
     }
 </script>
-<!--update-end--Author:huangzq  Date:20151127 for：三级联调 -->

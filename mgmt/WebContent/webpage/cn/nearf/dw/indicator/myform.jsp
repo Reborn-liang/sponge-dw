@@ -15,7 +15,7 @@
   <script type="text/javascript" src="plug-in/ckfinder/ckfinder.js"></script>
   
 <script type="text/javascript">
-  //编写自定义JS代码
+  
 function onEditFilter() {
 		var editValue = $('#editValue').val();
 		var row = $('#row').val();

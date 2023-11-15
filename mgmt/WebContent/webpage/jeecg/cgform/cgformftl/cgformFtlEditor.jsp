@@ -8,7 +8,7 @@
 <SCRIPT type="text/javascript">
   function test(data) {
 	  $.messager.alert('提示信息', data.msg);
-		//closetab('TAB方式添加');
+		
 	}
   </SCRIPT>
 </head>

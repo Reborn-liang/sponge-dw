@@ -37,26 +37,26 @@
  <script src = "webpage/jeecg/cgform/template/cgformTemplateList.js"></script>
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  			$("#cgformTemplateListtb").find("input[name='createDate']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#cgformTemplateListtb").find("input[name='updateDate']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  });
  
-//导入
+
 function ImportXls() {
 	openuploadwin('Excel导入', 'cgformTemplateController.do?upload', "cgformTemplateList");
 }
 
-//导出
+
 function ExportXls() {
 	JeecgExcelExport("cgformTemplateController.do?exportXls","cgformTemplateList");
 }
 
-//模板下载
+
 function ExportXlsByT() {
 	JeecgExcelExport("cgformTemplateController.do?exportXlsByT","cgformTemplateList");
 }
- //下载模板
+ 
 function downloadTemplate(){
  var rowsData = $('#cgformTemplateList').datagrid('getSelections');
  if (!rowsData || rowsData.length==0) {
@@ -81,7 +81,7 @@ function downloadTemplate(){
   }
  });
 }
- //重写方法
+ 
  function saveObj(){
   iframe.uploadZip();
  }

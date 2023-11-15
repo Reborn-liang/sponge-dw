@@ -30,20 +30,20 @@
  <script src = "webpage/jeecg/cgform/graphreport/jformGraphreportHeadList.js"></script>
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  });
  
-//导入
+
 function ImportXls() {
 	openuploadwin('Excel导入', 'jformGraphreportHeadController.do?goImportExcel', "jformGraphreportHeadList");
 }
 
-//导出
+
 function ExportXls() {
 	JeecgExcelExport("jformGraphreportHeadController.do?exportXls","jformGraphreportHeadList");
 }
 
-//模板下载
+
 function ExportXlsByT() {
 	JeecgExcelExport("jformGraphreportHeadController.do?exportXlsByT","jformGraphreportHeadList");
 }

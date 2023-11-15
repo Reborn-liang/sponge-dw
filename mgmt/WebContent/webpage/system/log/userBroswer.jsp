@@ -33,7 +33,7 @@
 						},
 						exporting:{  
 			                filename:'column',  
-			                url:'${ctxPath}/logController.do?export'//
+			                url:'${ctxPath}/logController.do?export'
 			            },
 						plotOptions : {
 							column : {

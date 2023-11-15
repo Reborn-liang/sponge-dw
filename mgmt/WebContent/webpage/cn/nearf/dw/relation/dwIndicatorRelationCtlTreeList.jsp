@@ -44,20 +44,20 @@
 	}
 	
  	$(document).ready(function(){
- 		//给时间控件加上样式
+ 		
 	 });
 	
- 	//导入
+ 	
  	function ImportXls() {
  		openuploadwin('Excel导入', 'dwIndicatorRelationCtlController.do?upload', "dwIndicatorRelationCtlList");
  	}
 
- 	//导出
+ 	
  	function ExportXls() {
  		JeecgExcelExport("dwIndicatorRelationCtlController.do?exportXls","dwIndicatorRelationCtlList");
  	}
 
- 	//模板下载
+ 	
  	function ExportXlsByT() {
  		JeecgExcelExport("dwIndicatorRelationCtlController.do?exportXlsByT","dwIndicatorRelationCtlList");
  	}

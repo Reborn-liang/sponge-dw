@@ -29,22 +29,22 @@
  <script src = "webpage/system/sms/tSSmsTemplateList.js"></script>		
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  			$("#tSSmsTemplateListtb").find("input[name='createDate']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#tSSmsTemplateListtb").find("input[name='updateDate']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  });
  
-//导入
+
 function ImportXls() {
 	openuploadwin('Excel导入', 'tSSmsTemplateController.do?upload', "tSSmsTemplateList");
 }
 
-//导出
+
 function ExportXls() {
 	JeecgExcelExport("tSSmsTemplateController.do?exportXls","tSSmsTemplateList");
 }
 
-//模板下载
+
 function ExportXlsByT() {
 	JeecgExcelExport("tSSmsTemplateController.do?exportXlsByT","tSSmsTemplateList");
 }

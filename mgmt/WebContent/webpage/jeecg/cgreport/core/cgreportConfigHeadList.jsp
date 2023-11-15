@@ -30,12 +30,10 @@
 <script src="plug-in/clipboard/ZeroClipboard.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  });
   
-  /**
-	*	弹出菜单链接
-	*/
+  
 	function popMenuLink(tableName,content){
 		$.dialog({
 			content: "url:cgreportConfigHeadController.do?popmenulink&url=cgReportController.do?list&title="+tableName,

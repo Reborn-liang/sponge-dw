@@ -18,11 +18,11 @@ a:hover {
 	color: black;
 	text-decoration: none;
 }
-/*update-start--Author:zhangguoming  Date:20140622 for：左侧树调整：加大宽度、更换节点图标、修改选中颜色*/
+
 .tree-node-selected{
     background: #eaf2ff;
 }
-/*update-end--Author:zhangguoming  Date:20140622 for：左侧树调整：加大宽度、更换节点图标、修改选中颜色*/
+
 </style>
 <SCRIPT type="text/javascript">
 
@@ -130,14 +130,13 @@ a:hover {
 </SCRIPT>
 </head>
 <body class="easyui-layout" style="overflow-y: hidden" scroll="no">
-<!-- 顶部-->
+
 <div region="north" border="false" title="" class="headerBg" style="height: 100px; padding: 1px; overflow: hidden;">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
     <td align="left" style="vertical-align: text-bottom">
     <img src="plug-in/login/images/logo.jpg"> 
-    <!--
-        <img src="plug-in/login/images/toplogo.png" width="550" height="52" alt="">-->
+    
         <div style="position: absolute; top: 75px; left: 33px;"></div>
     </td>
     <td align="right" nowrap>
@@ -194,7 +193,7 @@ a:hover {
             <tr style="height: 80px;">
                 <td colspan="2">
                     <ul class="shortcut">
-                        <!-- 动态生成并赋值过来 -->
+                        
                     </ul>
                 </td>
             </tr>
@@ -203,9 +202,9 @@ a:hover {
 </tr>
 </table>
 </div>
-<!-- 左侧-->
+
 <div region="west" split="true" href="loginController.do?shortcut_top" title="<t:mutiLang langKey="common.navegation"/>" style="width: 200px; padding: 1px;"></div>
-<!-- 中间-->
+
 <div id="mainPanle" region="center" style="overflow: hidden;">
     <div id="maintabs" class="easyui-tabs" fit="true" border="false">
         <div class="easyui-tab" title="<t:mutiLang langKey="common.dash_board"/>" href="loginController.do?home" style="padding: 2px;"></div>
@@ -216,19 +215,10 @@ a:hover {
         </c:if>
     </div>
 </div>
-<!-- 右侧 -->
+
 <div collapsed="true" region="east" iconCls="icon-reload" title="<t:mutiLang langKey="common.assist.tools"/>" split="true" style="width: 190px;"
 	data-options="onCollapse:function(){easyPanelCollapase()},onExpand:function(){easyPanelExpand()}">
-	<!--
-    <div id="tabs" class="easyui-tabs" border="false" style="height: 240px">
-        <div title='<t:mutiLang langKey="common.calendar"/>' style="padding: 0px; overflow: hidden; color: red;">
-            <div id="layout_east_calendar"></div>
-        </div>
-    </div>
-    <div id="layout_jeecg_onlinePanel" data-options="fit:true,border:false" title=<t:mutiLang langKey="common.online.user"/>>
-        <table id="layout_jeecg_onlineDatagrid"></table>
-    </div>
-    -->
+	
     <div class="easyui-layout" fit="true" border="false">
 		<div region="north" border="false" style="height:180px;overflow: hidden;">
 			<div id="tabs" class="easyui-tabs" border="false" style="height: 240px">
@@ -244,7 +234,7 @@ a:hover {
 		</div>
 	</div>
 </div>
-<!-- 底部 -->
+
 <div region="south" border="false" style="height: 25px; overflow: hidden;">
     <div align="center" style="color: #1fa3e5; padding-top: 2px">&copy;
         <t:mutiLang langKey="common.copyright"/>

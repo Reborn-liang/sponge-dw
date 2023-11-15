@@ -21,7 +21,7 @@
             <label class="Validform_label"> <t:mutiLang langKey="operate.code"/>: </label>
             <input name="operationcode" class="inputxt" value="${operation.operationcode}">
         </div>
-        <!-- 图标字段现在不用暂时隐藏-->
+        
         <div class="form" style="display: none;">
             <label class="Validform_label"> <t:mutiLang langKey="common.icon.name"/>: </label>
             <select name="TSIcon.id">

@@ -21,14 +21,14 @@
 	<t:dgToolBar operationCode="undo" title="取消编辑" icon="icon-undo" funname="reject"></t:dgToolBar>
 </t:datagrid>
 <script type="text/javascript">
-	//添加行
+	
 	function addRow(title,addurl,gname){
 		$('#'+gname).datagrid('appendRow',{});
 		var editIndex = $('#'+gname).datagrid('getRows').length-1;
 		$('#'+gname).datagrid('selectRow', editIndex)
 				.datagrid('beginEdit', editIndex);
 	}
-	//保存数据
+	
 	function saveData(title,addurl,gname){
 		if(!endEdit(gname))
 			return false;
@@ -58,7 +58,7 @@
 			}
 		})
 	}
-	//结束编辑
+	
 	function endEdit(gname){
 		var  editIndex = $('#'+gname).datagrid('getRows').length-1;
 		for(var i=0;i<=editIndex;i++){
@@ -69,7 +69,7 @@
 		}
 		return true;
 	}
-	//编辑行
+	
 	function editRow(title,addurl,gname){
 		var rows=$('#'+gname).datagrid("getChecked");
 		if(rows.length==0){
@@ -81,7 +81,7 @@
 			$('#'+gname).datagrid('beginEdit', index);
 		}
 	}
-	//取消编辑
+	
 	function reject(title,addurl,gname){
 		$('#'+gname).datagrid('clearChecked');
 		$('#'+gname).datagrid('rejectChanges');

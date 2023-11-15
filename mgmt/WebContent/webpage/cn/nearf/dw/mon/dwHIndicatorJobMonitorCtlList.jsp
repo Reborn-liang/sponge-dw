@@ -25,24 +25,24 @@
  <script src = "webpage/cn/nearf/dw/mon/dwHIndicatorJobMonitorCtlList.js"></script>		
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  			$("#dwHIndicatorJobMonitorCtlListtb").find("input[name='jobStartTime_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwHIndicatorJobMonitorCtlListtb").find("input[name='jobStartTime_end']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwHIndicatorJobMonitorCtlListtb").find("input[name='jobEndTime_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwHIndicatorJobMonitorCtlListtb").find("input[name='jobEndTime_end']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  });
  
-//导入
+
 function ImportXls() {
 	openuploadwin('Excel导入', 'dwHIndicatorJobMonitorCtlController.do?upload', "dwHIndicatorJobMonitorCtlList");
 }
 
-//导出
+
 function ExportXls() {
 	JeecgExcelExport("dwHIndicatorJobMonitorCtlController.do?exportXls","dwHIndicatorJobMonitorCtlList");
 }
 
-//模板下载
+
 function ExportXlsByT() {
 	JeecgExcelExport("dwHIndicatorJobMonitorCtlController.do?exportXlsByT","dwHIndicatorJobMonitorCtlList");
 }

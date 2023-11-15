@@ -9,24 +9,20 @@
         <script type="text/javascript" src="plug-in/jquery-plugs/form/jquery.form.js"></script>
 	    <link rel="stylesheet" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/bootstrap.css">
 	    
-	    <!-- add start by jg_renjie at 20151025 for:增加支持Validform插件的相关文件 -->
+	    
 	    <link rel="stylesheet" href="plug-in/Validform/css/style.css" type="text/css">
 	    <link rel="stylesheet" href="plug-in/Validform/css/tablefrom.css" type="text/css">
 	    <script type="text/javascript" src="plug-in/Validform/js/Validform_v5.3.1_min_zh-cn.js"></script>
 	    <script type="text/javascript" src="plug-in/Validform/js/Validform_Datatype_zh-cn.js"></script>
 	    <script type="text/javascript" src="plug-in/Validform/js/datatype_zh-cn.js"></script>
 	    <script type="text/javascript" src="plug-in/Validform/plugin/passwordStrength/passwordStrength-min.js"></script>
-	    <!-- add end by jg_renjie at 20151025 for:增加支持Validform插件的相关文件 -->
+	    
 	    
 	    <script type="text/javascript" src="plug-in/My97DatePicker/WdatePicker.js"></script>
 	    <link rel="stylesheet" href="plug-in/My97DatePicker/skin/WdatePicker.css" type="text/css"></link>
 	    
-	    <!--[if lte IE 6]>
-	    <link rel="stylesheet" type="text/css" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/bootstrap-ie6.css">
-	    <![endif]-->
-	    <!--[if lte IE 7]>
-	    <link rel="stylesheet" type="text/css" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/ie.css">
-	    <![endif]-->
+	    
+	    
 	    <link rel="stylesheet" href="plug-in/Formdesign/js/ueditor/formdesign/leipi.style.css">
          <style>
             html,body{

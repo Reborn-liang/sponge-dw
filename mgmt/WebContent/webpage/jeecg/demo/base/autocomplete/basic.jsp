@@ -3,17 +3,7 @@
 <script src="plug-in/jquery/jquery-autocomplete/jquery.autocomplete.js" type="text/javascript"></script>
 <link href="plug-in/jquery/jquery-autocomplete/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
 <style>
-<!--
-.ac_over {
-	background: #E0ECFF;
-	cursor: pointer;
-	color: #416AA3;
-}
 
-.ac_results {
-	border: 1px solid rgb(172, 216, 236);
-}
--->
 </style>
 <SCRIPT type="text/javascript">
         function parse(data){
@@ -23,20 +13,12 @@
 		        	});
         				return parsed;
         }
-        /**
-         * 选择后回调 
-         * 
-         * @param {Object} data
-         */
+        
         function callBack(data) {
         	$("#user").val(data.userName);
         }
         
-         /**
-          * 每一个选择项显示的信息
-          * 
-          * @param {Object} data
-          */
+         
         function formatItem(data) {
         	return data.userName + "-->" + " " + data.realName;
         }

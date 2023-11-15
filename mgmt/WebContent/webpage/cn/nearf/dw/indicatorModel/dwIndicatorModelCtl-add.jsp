@@ -12,11 +12,11 @@
 		 $.ajax({url:'dwIndicatorCtlController.do?getTableNameOrColumnFromInfomation&schema='+schema, success: function(data) {
 				try {
 					var factSelect = $("#factTable");
-					factSelect.empty(); //clean last data first
+					factSelect.empty(); 
 					var result = JSON.parse(data).obj;
 					factSelect.append("<option value=''>请选择</option>");
 					for(var i=0; i<result.length; i++){
-				        //alert("name:"+result[i].name+", id:"+result[i].id);
+				        
 				        factSelect.append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
 					}
 				} catch (ex) {
@@ -33,11 +33,11 @@
 		 $.ajax({url:'dwIndicatorCtlController.do?getTableNameOrColumnFromInfomation&schema='+schema, success: function(data) {
 				try {
 					var factSelect = $("#dimTable");
-					factSelect.empty(); //clean last data first
+					factSelect.empty(); 
 					var result = JSON.parse(data).obj;
 					factSelect.append("<option value=''>请选择</option>");
 					for(var i=0; i<result.length; i++){
-				        //alert("name:"+result[i].name+", id:"+result[i].id);
+				        
 				        factSelect.append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
 					}
 				} catch (ex) {

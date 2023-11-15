@@ -10,12 +10,8 @@
 		<link rel="stylesheet" href="plug-in/Validform/css/style.css" type="text/css"/>
 		<link rel="stylesheet" href="plug-in/Validform/css/tablefrom.css" type="text/css"/>
 	    <link rel="stylesheet" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/bootstrap.css">
-	    <!--[if lte IE 6]>
-	    <link rel="stylesheet" type="text/css" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/bootstrap-ie6.css">
-	    <![endif]-->
-	    <!--[if lte IE 7]>
-	    <link rel="stylesheet" type="text/css" href="plug-in/Formdesign/js/ueditor/formdesign/bootstrap/css/ie.css">
-	    <![endif]-->
+	    
+	    
 	    <link rel="stylesheet" href="plug-in/Formdesign/js/ueditor/formdesign/leipi.style.css">
          <style>
             html,body{

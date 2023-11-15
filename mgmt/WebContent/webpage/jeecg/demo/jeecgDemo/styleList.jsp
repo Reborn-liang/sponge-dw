@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-
+   "http:
 
 <html lang="en">
 <head>
@@ -30,11 +30,11 @@ ul{
  
 <script language="javascript"> 
 $.fn.dialog.defaults.top=100;
-//$.fn.combo.defaults.height=308;
-/* $.fn.combo.defaults=$.extend({},$.fn.combo.defaults,{heihgt:28} } */
 
 
-//时间公共getFormatDateByLong(value, "yyyy-MM-dd")
+
+
+
     Date.prototype.format = function (format) {  
         var o = {  
             "M+": this.getMonth() + 1,  
@@ -99,23 +99,23 @@ $.fn.dialog.defaults.top=100;
     
     
 	var isScroll = function (el) {  
-	    // test targets  
+	    
 	    var elems = el ? [el] : [document.documentElement, document.body];  
 	    var scrollX = false, scrollY = false;  
 	    for (var i = 0; i < elems.length; i++) {  
 	        var o = elems[i];  
-	        // test horizontal  
+	        
 	        var sl = o.scrollLeft;  
 	        o.scrollLeft += (sl > 0) ? -1 : 1;  
 	        o.scrollLeft !== sl && (scrollX = scrollX || true);  
 	        o.scrollLeft = sl;  
-	        // test vertical  
+	        
 	        var st = o.scrollTop;  
 	        o.scrollTop += (st > 0) ? -1 : 1;  
 	        o.scrollTop !== st && (scrollY = scrollY || true);  
 	        o.scrollTop = st;  
 	    }  
-	    // ret  
+	    
 	    return {  
 	        scrollX: scrollX,   
 	        scrollY: scrollY  
@@ -150,8 +150,7 @@ $.fn.dialog.defaults.top=100;
 	<form id="mutiLangListtb">
 		<div class='buttonArea'>
 			<div style="float:left;">
-			<!-- <a href="javascript:void(0)" class="easyui-linkbutton"
-				data-options="plain:true" onclick="append()">添加</a> -->
+			
 			<a href="javascript:void(0)" class="button " data-options="plain:true" onclick="doSubmit('mutiLangController.do?refreshCach','mutiLangList',null,null)" >刷新</a>
 			</div>
 			 <span style="float: right;height:28px;"> 
@@ -192,30 +191,7 @@ $.fn.dialog.defaults.top=100;
 		</div>
 
 		<div class="clear height10"></div>
-		<!-- 
-		<div class="shadowBoxWhite tableDiv">
-			<table class="easyui-datagrid"
-				data-options="url:'json.json',pageList: [5,10,15,20],pageSize:10,fitColumns:'true',queryParams:{'complete':''}"
-				pagination="true" width="width" id="orderdata" sortName="order_id" sortOrder="desc">
-				<thead>
-					<tr>
-						<th data-options="field:'order_id',checkbox:true,width:100"></th>
-						<th data-options="field:'sn',width:150" formatter="forsn">订单号</th>
-						<th data-options="field:'create_time',width:100,sortable:'true'" formatter="formatDate" >下单日期</th>
-						<th data-options="field:'sale_cmpl_time',width:100,sortable:'true'" formatter="formatDate">发货日期</th>		
-						<th data-options="field:'need_pay_money',width:100,sortable:'true'" formatter="forMoney">订单总额</th>
-						<th data-options="field:'paymoney',width:100,sortable:'true'" formatter="forMoney">实付金额</th>
-						<th data-options="field:'ship_name',width:100">收货人</th>
-						<th data-options="field:'status',width:100,sortable:'true'" formatter="forStruts">订单状态</th>
-						<th data-options="field:'pay_status',width:100,sortable:'true'" formatter="forpay" >付款状态</th>
-						<th data-options="field:'ship_status',width:100,sortable:'true'" formatter="forship">发货状态</th>
-						<th data-options="field:'shipping_type',width:100,sortable:'true'">配送方式</th>
-						<th data-options="field:'payment_name',width:100,sortable:'true'">支付方式</th>
-						<th data-options="field:'action',width:100" formatter="formatAction">操作</th>
-					</tr>
-				</thead>
-			</table>
-		</div> -->
+		
 		<div class="shadowBoxWhite tableDiv">
 			<table class="easyui-datagrid"
 				data-options="striped:true,url:'mutiLangController.do?datagrid&field=id,langKey,langContext,langCode',pageList: [5,10,15,20],pageSize:10,fitColumns:'true',queryParams:{'complete':''}"
@@ -253,7 +229,7 @@ $.fn.dialog.defaults.top=100;
 	}
 	
 	
-	//语言翻译
+	
 	function forlang(value,row,index){
 		var val;
 		val = getType({"zh-cn":"中文","en":"英文","jp":"日文"},value);
@@ -299,32 +275,32 @@ function formatAction(value,row,index){
 	
 	$(function(){
 		$(".searchAdvanced").hide();
-		//高级查询按钮
+		
 	    $("#aAdvanced").click(function () {
 	        if ($("#Advanced").val() == "0") {
 	            $("#Advanced").val(1);
 	            $("#simpleSearch").hide();
-	            //$("#aAdvanced").text("简单搜索")
+	            
 	            $("#aAdvanced").addClass("searchAdvancedS");
 	        } else {
 	            $("#Advanced").val(0);
 	            $("#simpleSearch").show();
-	            //$("#aAdvanced").text("高级搜索");
+	            
 	            $("#aAdvanced").removeClass("searchAdvancedS");
 	        }
 	        $(".searchAdvanced").slideToggle("slow");
 	    });
 	})
 	function mutiLangListsearch(){
-		//var queryParams=$('#mutiLangList').datagrid('options').queryParams;
+		
 		$('#mutiLangListtb').find('*').each(function(){
-			//queryParams[$(this).attr('name')]=$(this).val();
+			
 			});
 		var langCode = $("#langCode").val();
 		var langContext = $("#langContext").val();
 		
 		var langKey = $('#langKey').val();
-		//$('#mutiLangList').datagrid({url:'mutiLangController.do?datagrid&field=id,langKey,langContext,langCode,',pageNumber:1});
+		
 		$("#mutiLangList").datagrid('load', {
 			langKey:langKey,
 			langContext:langContext,

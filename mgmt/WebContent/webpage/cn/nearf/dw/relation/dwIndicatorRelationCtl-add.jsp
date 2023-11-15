@@ -39,8 +39,7 @@ $(window).load(function(){
 					</td>
 					<td class="value">
 					     	<input id="parentIndicatorId" name="parentIndicatorId" type="text" style="width: 150px" class="inputxt"  datatype="*">
-							<!-- <input id="relationTree" style="width: 150px">
-							<button type="button" onclick="clearRelation();">清除</button> -->
+							
 							<span class="Validform_checktip"></span>
 							<label class="Validform_label" style="display: none;">依赖指标</label>
 						</td>

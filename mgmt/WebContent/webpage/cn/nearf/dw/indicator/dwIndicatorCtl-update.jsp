@@ -8,13 +8,7 @@
   <script type="text/javascript" src="plug-in/ckfinder/ckfinder.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
-	/* var modelCode = $("select[name='modelCode'] option:selected").val();
-	if(modelCode!=null && modelCode!='undefined' && modelCode!=""){
-		  $("#modelCodeInd").val(modelCode);
-		  console.log(modelCode+",11111111:"+$("#modelCodeInd").val());
-	  }else{
-		  $("#modelCodeInd").val("");
-	  } */
+	
 	
 	$('#tt').tabs({
 	   onSelect:function(title){
@@ -46,8 +40,8 @@
   
   function parseSQL(ctlId) {
 	  console.log(ctlId);
-	 // $.dialog.confirm('你确定要立即调用SQL解析吗?', function(r) {
-	//	   if (r) {
+	 
+	
 				$.ajax({
 					url : "dwIndicatorCtlController.do?parseSQL&id="+ctlId,
 					success : function(data) {
@@ -58,8 +52,8 @@
 						}
 					}
 				});
-	//		}
-	//  });
+	
+	
  }
   
  </script>
@@ -281,7 +275,7 @@
 				</t:tabs>
 			</div>
 			</t:formvalid>
-			<!-- 添加 附表明细 模版 -->
+			
 		<table style="display:none">
 		<tbody id="add_dwIndicatorSftpCtl_table_template">
 			<tr>

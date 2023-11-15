@@ -12,7 +12,7 @@
 				dataType:"json",
 				success : function(data) {
 					var mydata = eval("("+data+")");
-					//关闭窗口
+					
 					frameElement.api.close();
 				}
 		});

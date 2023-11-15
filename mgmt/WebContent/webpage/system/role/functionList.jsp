@@ -14,14 +14,14 @@
 		var obj = new Object();
 		obj.fq =a;
 		obj.roleId = jq("#roleId").val();
-		//保存
+		
 		jq.ajax({
 			async : false,
 			cache : false,
 			type : 'POST',
 			data:obj,
-			url : 'roleController.do?saveOperate', // 请求的action路径
-			error : function() {// 请求失败处理函数
+			url : 'roleController.do?saveOperate', 
+			error : function() {
 			},
 			success : function(data) {
 				var d = jq.parseJSON(data);

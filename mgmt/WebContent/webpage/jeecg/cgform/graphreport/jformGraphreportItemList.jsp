@@ -24,7 +24,7 @@
 			$(":input").attr("disabled","true");
 			$(".datagrid-toolbar").hide();
 		}
-		//将表格的表头固定
+		
 	    $("#jformGraphreportItem_table").createhftable({
 	    	height:'300px',
 			width:'auto',

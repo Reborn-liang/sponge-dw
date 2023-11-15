@@ -46,14 +46,7 @@
 	  }
   }
 
-  /*每次只能提交一种数据类型的数据，不能同时提交
-  function onlySubmit(){
-	  var notCurrentDbTypes = $("input[name='dbType']").not(":checked").val();
-	  $.each(notCurrentDbTypes,function(index,e){
-		  $("#"+e+"_div").remove();
-	  });
-  }
-  */
+  
 
  </script>
  </head>
@@ -77,7 +70,7 @@
 				</td>
 				<td class="value" >
 			     	 <input id="dbName" name="dbName" type="text" style="width: 150px"   ajaxurl="autoFormDbController.do?checkDbName"  class="inputxt" errorMsg="不能为中文" nullmsg="<t:mutiLang langKey="form.db.name"/>不能为空!"  datatype="/^[A-Za-z\d-._]+$/"  >
-			     	 <!--update-end--Author:luobaoli  Date:20150626 for：增加数据源名称的非空校验 -->	
+			     	 	
 					<span class="Validform_checktip"></span>
 				</td>
 				<td align="center" width="100px">
@@ -88,24 +81,7 @@
 					<span class="Validform_checktip"></span>
 				</td>
 			</tr>
-			<!-- 
-			<tr>
-				<td align="right">
-					<label class="Validform_label"><t:mutiLang langKey="form.db.tablename"/>:</label>
-				</td>
-				<td class="value">
-			     	 <input id="dbTableName" name="dbTableName" type="text" style="width: 150px" class="inputxt">
-					<span class="Validform_checktip"></span>
-				</td>
-				<td align="right">
-					<label class="Validform_label"><t:mutiLang langKey="form.auto.formid"/>:</label>
-				</td>
-				<td class="value">
-			     	 <input id="autoFormId" name="autoFormId" type="text" style="width: 150px" class="inputxt">
-					<span class="Validform_checktip"></span>
-				</td>
-			</tr>
-			 -->
+			
 			<tr>
 				<td align="center" width="100px">
 					<label class="Validform_label"><t:mutiLang langKey="form.db.type"/>:</label>
@@ -145,7 +121,7 @@
 				</td>
 			</tr>
 		</table>
-		<!--add-begin--Author:luobaoli  Date:20150621 for：新增数据源类型为“table”时的处理逻辑 -->	
+			
 		<div style="margin-top: 20px;border: 1px solid #E6E6E6;display: none" id="table_div" class="formdbdiv">
 			<table cellpadding="0" cellspacing="1" class="formtable">
 				<tr>
@@ -182,7 +158,7 @@
 				</tr>
 			</table>
 		</div>
-		<!--add-end--Author:luobaoli  Date:20150621 for：新增数据源类型为“table”时的处理逻辑 -->
+		
 		<div style="margin-top: 5px;border: 1px solid #E6E6E6" id="sql_div" class="formdbdiv">
 			<table cellpadding="0" cellspacing="1" style="width: 100%">
 				<tr>
@@ -205,22 +181,22 @@
 				</tr>
 				<tr>
 					<td class="value" colspan="4">
-						<!--update-begin--Author:luobaoli  Date:20150630 for：新增fieldset标签 -->	
+							
 						<fieldset style="border: 1px solid #E6E6E6;">
 							<legend><t:mutiLang langKey="form.db.query.param"/></legend>
 							<div style="width:100%;height:100%" title="form.db.query.param" id="autoFormParam"></div>
 						</fieldset>
-						<!--update-end--Author:luobaoli  Date:20150630 for：新增fieldset标签 -->	
+							
 					</td>
 				</tr>
 				<tr>
 					<td class="value" colspan="4">
-						<!--update-begin--Author:luobaoli  Date:20150630 for：新增fieldset标签 -->	
+							
 						<fieldset style="border: 1px solid #E6E6E6;">
 							<legend><t:mutiLang langKey="form.db.query.data.column"/></legend>
 							<div style="width:100%;height:100%" title="form.db.query.data.column" id="autoFormDbField"></div>
 						</fieldset>
-						<!--update-end--Author:luobaoli  Date:20150630 for：新增fieldset标签 -->	
+							
 					</td>
 				</tr>
 			</table>
@@ -229,7 +205,7 @@
 			JAVA类配置
 		</div>
 	</t:formvalid>
-	<!-- 添加 附表明细 模版 -->
+	
 	<table style="display:none">
 	<tbody id="add_autoFormDbField_table_template">
 		<tr>
@@ -285,7 +261,7 @@
 				</td>
 		</tr>
 	 </tbody>
-	 <!--add-begin--Author:luobaoli  Date:20150621 for：新增数据源类型为“table”时的属性列表新增模块 -->	
+	 	
 	 <tbody id="add_autoFormDbFieldForTable_table_template">
 		<tr>
 			 <td align="center"><div style="width: 40px;" name="xh"></div></td>
@@ -303,7 +279,7 @@
 					</td>
 			</tr>
 		 </tbody>
-	<!--add-begin--Author:luobaoli  Date:20150621 for：新增数据源类型为“table”时的属性列表新增模块 -->	
+		
 	</table>
  </body>
  <script src = "webpage/jeecg/cgform/autoform/autoFormDb.js"></script>	

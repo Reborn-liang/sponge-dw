@@ -29,14 +29,14 @@
  </div>		
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  			$("#autoFormListtb").find("input[name='createDate']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#autoFormListtb").find("input[name='updateDate']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  });
  
 function addbytab() {
 	    addOneTab( '<t:mutiLang langKey="auto.form.addorupdate"/>', "autoFormController.do?goAdd");
-		//document.location="autoFormController.do?goAdd";
+		
 	}
 function updatebytab(){
 var rows = $("#autoFormList").datagrid("getSelections");
@@ -46,13 +46,13 @@ var rows = $("#autoFormList").datagrid("getSelections");
 	}
 	var id=rows[0].id;
 	addOneTab( '<t:mutiLang langKey="auto.form.addorupdate"/>', "autoFormController.do?goUpdate&id="+id);
-	//document.location="autoFormController.do?goUpdate&id="+id;
+	
 }
 var parseWindow ;
 function parse(id){
-	//var targetUrl = 'autoFormController.do?parse&id='+id;
-    //window.open(targetUrl,'mywin',"menubar=0,toolbar=0,status=0,resizable=1,left=0,top=0,scrollbars=1,width=" +(screen.availWidth-10) + ",height=" + (screen.availHeight-50) + "\"");
-	//createdetailwindow('<t:mutiLang langKey="common.view"/>','autoFormController.do?parse&id='+id,600,400);
+	
+    
+	
 	var addurl = 'autoFormController.do?parse&id='+id;
 	parseWindow = $.dialog({
 		content: 'url:'+addurl,

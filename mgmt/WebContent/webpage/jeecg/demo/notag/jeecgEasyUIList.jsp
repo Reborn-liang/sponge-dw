@@ -33,7 +33,7 @@
 </div>
 </span></div>
 <script type="text/javascript">
-	    // 编辑初始化数据
+	    
 		function getData(data){
 			var rows = [];			
 			var total = data.total;
@@ -53,19 +53,19 @@
 			var newData={"total":total,"rows":rows};
 			return newData;
 		}
-	    // 筛选
+	    
 		function jeecgEasyUIListsearchbox(value,name){
     		var queryParams=$('#jeecgEasyUIList').datagrid('options').queryParams;
     		queryParams[name]=value;
     		queryParams.searchfield=name;
     		$('#jeecgEasyUIList').datagrid('load');
     	}
-	    // 刷新
+	    
 	    function reloadTable(){
 	    	$('#jeecgEasyUIList').datagrid('reload');
 	    }
 	    
-		// 设置datagrid属性
+		
 		$('#jeecgEasyUIList').datagrid({
 			title: '页面不用自定义标签',
 	        idField: 'id',
@@ -85,7 +85,7 @@
 	    	}
 	        
 	    }); 
-	    //设置分页控件  
+	    
 	    $('#jeecgEasyUIList').datagrid('getPager').pagination({  
 	        pageSize: 10,  
 	        pageList: [10,20,30],  
@@ -99,7 +99,7 @@
 	            $(this).pagination('loaded');
 	        }
 	    });
-	    // 设置筛选
+	    
     	$('#jeecgEasyUIListsearchbox').searchbox({
     		searcher:function(value,name){
     			jeecgEasyUIListsearchbox(value,name);

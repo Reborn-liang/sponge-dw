@@ -44,49 +44,5 @@
 </div>
 
 <script type="text/javascript">
-<!--
-    $(function() {
-        var li_east = 0;
-    });
-    function addOrg() {
-        var id = "";
-        var rowsData = $('#departList').datagrid('getSelections');
-        if (rowsData.length == 1) {
-            id = rowsData[0].id;
-        }
-        var url = "departController.do?add&id=" + id;
-        add('<t:mutiLang langKey="common.add.param" langArg="common.department"/>', url, "departList");
-    }
 
-    function queryUsersByDepart(departid){
-        var title = '<t:mutiLang langKey="member.list"/>';
-        if(li_east == 0 || $('#main_depart_list').layout('panel','east').panel('options').title != title){
-            $('#main_depart_list').layout('expand','east');
-        }
-        <%--$('#eastPanel').panel('setTitle','<t:mutiLang langKey="member.list"/>');--%>
-        $('#main_depart_list').layout('panel','east').panel('setTitle', title);
-        $('#main_depart_list').layout('panel','east').panel('resize', {width: 500});
-        $('#userListpanel').panel("refresh", "departController.do?userList&departid=" + departid);
-    }
-    /**
-     * 为 组织机构 设置 角色
-     * @param departid 组织机构主键
-     * @param departname 组织机构名称
-     */
-    function setRoleByDepart(departid, departname){
-        var currentTitle = $('#main_depart_list').layout('panel', 'east').panel('options').title;
-        if(li_east == 0 || currentTitle.indexOf("<t:mutiLang langKey="current.org"/>") < 0){
-            $('#main_depart_list').layout('expand','east');
-        }
-        var title = departname + ':<t:mutiLang langKey="current.org"/>';
-        $('#main_depart_list').layout('panel','east').panel('setTitle', title);
-        $('#main_depart_list').layout('panel','east').panel('resize', {width: 200});
-        var url = {
-            <%--title :"test",--%>
-            href:"roleController.do?roleTree&orgId=" + departid
-        }
-        $('#userListpanel').panel(url);
-        $('#userListpanel').panel("refresh");
-    }
-//-->
 </script>

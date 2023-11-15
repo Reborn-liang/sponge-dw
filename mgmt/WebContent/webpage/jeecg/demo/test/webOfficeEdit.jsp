@@ -1,41 +1,32 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-
 
 <HTML>
 <HEAD>
 <TITLE>weboffice演示页面</TITLE>
-<!-- --------------------=== 调用Weboffice初始化方法 ===--------------------- -->
+
 <SCRIPT language=javascript event=NotifyCtrlReady for=WebOffice1>
-/****************************************************
-*
-*	在装载完Weboffice(执行<object>...</object>)
-*	控件后执行 "WebOffice1_NotifyCtrlReady"方法
-*
-****************************************************/
+
 	WebOffice1_NotifyCtrlReady();
 </SCRIPT>
 
 
 <SCRIPT language=javascript>
-/****************************************************
-*
-*		控件初始化WebOffice方法
-*
-****************************************************/
+
 function WebOffice1_NotifyCtrlReady() {
 	document.all.WebOffice1.ShowToolBar(0);
-	//document.all.WebOffice1.SetWindowText("WebOffice", 0);
+	
 	document.all.WebOffice1.OptionFlag |= 128;
-	var sFileType = "${fileType}";//doc,xls,ppt,wps
+	var sFileType = "${fileType}";
 	if ("${docId}" != "") {
 		document.all.WebOffice1.LoadOriginalFile("./webOfficeController.do?getDoc&fileId=${docId}", sFileType);
 	} else {
-		// 新建文档
+		
 		document.all.WebOffice1.LoadOriginalFile("", sFileType);
 	}
 }
-// ---------------------== 关闭页面时调用此函数，关闭文件 ==---------------------- //
+
 function window_onunload() {
 	document.all.WebOffice1.Close();
 }
@@ -45,19 +36,19 @@ function newDoc() {
 	document.all.WebOffice1.LoadOriginalFile("", doctype);
 }
 
-// 打开本地文件
+
 function docOpen() {
 	document.all.WebOffice1.LoadOriginalFile("open", "doc");
 }
-// -----------------------------== 保存文档 ==------------------------------------ //
+
 function newSave() {
 	document.all.WebOffice1.Save();
 }
-// -----------------------------== 另存为文档 ==------------------------------------ //
+
 function SaveAsTo() {
 	document.all.WebOffice1.ShowDialog(84);
 }
-// -----------------------------== 上传文档 ==------------------------------------ //
+
 function SaveDoc() {
 	var returnValue;
 	 if(myform.DocTitle.value ==""){
@@ -71,15 +62,15 @@ function SaveDoc() {
 		return false;
 	}
 	
-	document.all.WebOffice1.HttpInit();			//初始化Http引擎
-	// 添加相应的Post元素 
+	document.all.WebOffice1.HttpInit();			
+	
 	document.all.WebOffice1.HttpAddPostString("id", "${docId}");
 	document.all.WebOffice1.HttpAddPostString("doctitle", myform.DocTitle.value);
 	document.all.WebOffice1.HttpAddPostString("docid", myform.DocID.value);
 	document.all.WebOffice1.HttpAddPostString("doctype",myform.doctype.value);
-	document.all.WebOffice1.HttpAddPostCurrFile("DocContent","");		// 上传文件
+	document.all.WebOffice1.HttpAddPostCurrFile("DocContent","");		
 
-	returnValue = document.all.WebOffice1.HttpPost("./webOfficeController.do?saveDoc&fileId=${docId}");	// 判断上传是否成功
+	returnValue = document.all.WebOffice1.HttpPost("./webOfficeController.do?saveDoc&fileId=${docId}");	
 	if("succeed" == returnValue){
 		alert("文件上传成功");	
 	}else if("failed" == returnValue)
@@ -104,13 +95,13 @@ function SaveDoc() {
 		<td></td>
 	</tr>
 	<tr>
-		<td colspan="2" rowspan="12" valign="top"><!-- -----------------------------== 装载weboffice控件 ==--------------------------------- --> <SCRIPT>
+		<td colspan="2" rowspan="12" valign="top"> <SCRIPT>
 					var s = ""
 						s += "<object id=WebOffice1 height=500 width='100%' style='LEFT: 0px; TOP: 0px' classid='clsid:E77E049B-23FC-4DB8-B756-60529A35FAD5' codebase='${webRoot}/plug-in/webOffice/weboffice_v6.0.5.0.cab#Version=6,0,5,0'>"
 						s +="<param name='_ExtentX' value='6350'><param name='_ExtentY' value='6350'>"
 						s +="</OBJECT>"			
 						document.write(s)
-				</SCRIPT> <!-- --------------------------------== 结束装载控件 ==----------------------------------- --></td>
+				</SCRIPT> </td>
 	</tr>
 </table>
 </form>

@@ -43,8 +43,8 @@
 			type : 'POST',
 			contentType : 'application/json', 
 			dataType:"json",
-			url : "cgformEnhanceJavaController.do?doCgformEnhanceJava&buttonCode="+buttonCode+"&formId="+formId,// 请求的action路径
-			error : function() {// 请求失败处理函数
+			url : "cgformEnhanceJavaController.do?doCgformEnhanceJava&buttonCode="+buttonCode+"&formId="+formId,
+			error : function() {
 				alert('<t:mutiLang langKey="get.error"/>');
 				frameElement.api.close();
 			},

@@ -18,7 +18,7 @@
     }); 
     $(document).ready(function(){
     	$(".datagrid-toolbar").parent().css("width","auto");
-    	//将表格的表头固定
+    	
     	$("#jeecgOrderCustom_table").createhftable({
 	    	height:'200px',
 			width:'auto',

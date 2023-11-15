@@ -29,7 +29,7 @@
  <script src = "webpage/cn/nearf/dw/indicator/dwIndicatorStdCtlList.js"></script>		
  <script type="text/javascript">
  $(document).ready(function(){
- 		//给时间控件加上样式
+ 		
  			$("#dwIndicatorStdCtlListtb").find("input[name='createDate_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwIndicatorStdCtlListtb").find("input[name='createDate_end']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
  			$("#dwIndicatorStdCtlListtb").find("input[name='updateDate_begin']").attr("class","Wdate").attr("style","height:20px;width:90px;").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd'});});
@@ -65,17 +65,17 @@
 	    });
 }
  
-//导入
+
 function ImportXls() {
 	openuploadwin('Excel导入', 'dwIndicatorStdCtlController.do?upload', "dwIndicatorStdCtlList");
 }
 
-//导出
+
 function ExportXls() {
 	JeecgExcelExport("dwIndicatorStdCtlController.do?exportXls","dwIndicatorStdCtlList");
 }
 
-//模板下载
+
 function ExportXlsByT() {
 	JeecgExcelExport("dwIndicatorStdCtlController.do?exportXlsByT","dwIndicatorStdCtlList");
 }

@@ -2,9 +2,7 @@
 <%@include file="/context/mytags.jsp"%>
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <script type="text/javascript" charset="utf-8">
-	/*
-	 *	excel导出
-	 */
+	
 	function jpPersonListExportXls() {
 		 window.location.href="jpPersonController.do?exportXls";
 	}
