@@ -19,24 +19,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 <c:if test='${pageUrl.indexOf("/h5/") < 0}'>
 	
-	/* 设置 cookie  */
 	function setCookie(c_name, value, expiredays){
 		var exdate=new Date();
 		exdate.setDate(exdate.getDate() + expiredays);
 		document.cookie=c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
 	}
-	
-	/**
-	 * 设置 window的 zIndex
-	 * @param flag true: 不增量(因为 tip提示经常使用 zIndex, 所以如果是 tip的话 ,则不增量)
-	 * @returns
-	 */
+
 	function getzIndex(flag){
 		var zindexNumber = getCookie("ZINDEXNUMBER");
 		if(zindexNumber == null){
 			zindexNumber = 2010;
 			setCookie("ZINDEXNUMBER",zindexNumber);
-			//zindexNumber = 1980;
 		}else{
 			if(zindexNumber < 2030){
 				zindexNumber = 2030;
@@ -189,7 +182,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		gridname = id;
 		var rowsData = $('#' + id).datagrid('getSelections');
 		if (!rowsData || rowsData.length == 0) {
-			//do nothing
 		} else if (rowsData.length > 1) {
 			tip('请选择一条记录');
 			return;
