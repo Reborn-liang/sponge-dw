@@ -47,7 +47,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
     }
 
     private boolean isRefererValid(String referer) {
-        String regex = "https?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?";
+        String regex = "https?://([\\w-]+\\.)?([\\w-]+(:\\d{1,5})?|[\\w-]+)(/[\\w-./?%&=]*)?";
         return referer.matches(regex);
     }
 
@@ -58,25 +58,22 @@ public class SecurityInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        response.setHeader("X-Frame-Options", "SAMEORIGIN");
+        response.setHeader("X-XSS-Protection", "1; mode=block");
 
         Set<String> allowedOrigins = loadAllowedOriginsFromProperties();
         String origin = request.getHeader("Origin");
         String referer = request.getHeader("Referer");
-        if (origin !=null){
-            URI uri = new URI(origin);
-            if (!allowedOrigins.contains(uri.getHost())) {
-                return false;
-            }
-        }
 
-        if (isRefererEmpty(referer)||isRefererValid(referer)) {
+        if (origin != null && !allowedOrigins.contains(new URI(origin).getHost())) {
             return false;
         }
 
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        response.setHeader("X-Frame-Options", "SAMEORIGIN");
-        response.setHeader("X-XSS-Protection", "1; mode=block");
-        return true;
+        if (isRefererEmpty(referer)) {
+            return false;
+        } else return isRefererValid(referer);
+
     }
 
 

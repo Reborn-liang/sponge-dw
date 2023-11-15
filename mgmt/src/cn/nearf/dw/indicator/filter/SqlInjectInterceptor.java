@@ -6,6 +6,7 @@ import org.owasp.esapi.ESAPI;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Enumeration;
@@ -21,35 +22,43 @@ public class SqlInjectInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3) {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object arg2, ModelAndView arg3) {
 
     }
 
 
     @Override
-    public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
-        String cookie = arg0.getHeader("cookie");
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
+        String cookie = request.getHeader("cookie");
         TSUser sessionUser = ResourceUtil.getSessionUserName();
         if (sessionUser != null) {
             if (sessionUser.getUserKey() == null || !sessionUser.getUserKey().equals("管理员")) {
-                throw new Exception("Your account has no access!");
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                response.getWriter().write("Your account has no access!");
             }
         }
-        Enumeration<String> names = arg0.getParameterNames();
+        Enumeration<String> names = request.getParameterNames();
         while (names.hasMoreElements()) {
             String name = names.nextElement();
-            String[] values = arg0.getParameterValues(name);
+            String[] values = request.getParameterValues(name);
             for (String value : values) {
                 //sql注入直接拦截
 /*                if(judgeSQLInject(value.toLowerCase())){
-                    arg1.setContentType("text/html;charset=UTF-8");
-                    arg1.getWriter().print("参数含有非法攻击字符,已禁止继续访问！");
+                    response.setContentType("text/html;charset=UTF-8");
+                    response.getWriter().print("参数含有非法攻击字符,已禁止继续访问！");
                     return false;
                 }*/
                 //跨站xss清理
                 String s = cleanXSS(value);
-                if (!value.equals(s))
-                    throw new Exception("No access!");
+                if (!value.equals(s)) {
+                    //                    throw new Exception("No access!");
+                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    response.getWriter().write("No access!");
+//                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("webpage/common/error.jsp");
+//                    requestDispatcher.forward(request, response);
+                    return false;
+                }
+
             }
         }
         return true;
