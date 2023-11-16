@@ -16,6 +16,7 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import cn.nearf.dw.indicator.filter.CsrfTokenManager;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.util.TextUtils;
 import org.jeecgframework.core.constant.Globals;
@@ -164,7 +165,7 @@ public class DataGridTag extends TagSupport {
 	}
 
 	public void setActionUrl(String actionUrl) {
-		this.actionUrl = actionUrl;
+		this.actionUrl = CsrfTokenManager.getUrl(actionUrl);
 	}
 
 	public void setTitle(String title) {

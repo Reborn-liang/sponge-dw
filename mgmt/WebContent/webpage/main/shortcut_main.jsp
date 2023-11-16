@@ -28,7 +28,7 @@ a:hover {
 
 	$(function() {
 		$('#layout_jeecg_onlineDatagrid').datagrid({
-			url : 'systemController.do?datagridOnline&field=ip,logindatetime,user.userName,',
+			url : 'systemController.do?datagridOnline&CSRFToken=<%= CSRFToken %>&field=ip,logindatetime,user.userName,',
 			title : '',
 			iconCls : '',
 			fit : true,

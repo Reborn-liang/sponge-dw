@@ -4,6 +4,7 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import cn.nearf.dw.indicator.filter.CsrfTokenManager;
 import org.jeecgframework.core.util.MutiLangUtil;
 
 /**
@@ -33,7 +34,7 @@ public class DataGridConfOptTag extends TagSupport {
 		this.exp = exp;
 	}
 	public void setUrl(String url) {
-		this.url = url;
+		this.url = CsrfTokenManager.getUrl(url);
 	}
 	public void setTitle(String title) {
 		this.title = title;

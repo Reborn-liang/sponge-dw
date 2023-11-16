@@ -1,5 +1,7 @@
 package org.jeecgframework.tag.core.easyui;
 
+import cn.nearf.dw.indicator.filter.CsrfTokenManager;
+
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -31,7 +33,7 @@ public class DataGridDefOptTag extends TagSupport {
 		this.exp = exp;
 	}
 	public void setUrl(String url) {
-		this.url = url;
+		this.url = CsrfTokenManager.getUrl(url);
 	}
 	public void setTitle(String title) {
 		this.title = title;

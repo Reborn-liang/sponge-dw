@@ -7,6 +7,7 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import cn.nearf.dw.indicator.filter.CsrfTokenManager;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.core.util.oConvertUtils;
 
@@ -345,7 +346,7 @@ public class WebUploaderTag extends TagSupport {
 		return url+"&sessionId="+pageContext.getSession().getId();
 	}
 	public void setUrl(String url) {
-		this.url = url;
+		this.url = CsrfTokenManager.getUrl(url);
 	}
 	
 	public String getShowImgDiv() {

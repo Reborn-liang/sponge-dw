@@ -1,5 +1,7 @@
 package org.jeecgframework.tag.core.easyui;
 
+import cn.nearf.dw.indicator.filter.CsrfTokenManager;
+
 import java.io.IOException;
 
 import javax.servlet.jsp.JspTagException;
@@ -61,7 +63,7 @@ public class ComboTreeTag extends TagSupport {
 	}
 
 	public void setUrl(String url) {
-		this.url = url;
+		this.url = CsrfTokenManager.getUrl(url);
 	}
 
 	public void setName(String name) {

@@ -1,5 +1,7 @@
 package org.jeecgframework.tag.vo.easyui;
 
+import cn.nearf.dw.indicator.filter.CsrfTokenManager;
+
 /**
  * 
  * @author  张代浩
@@ -74,7 +76,7 @@ public class DataGridUrl {
 	}
 
 	public void setUrl(String url) {
-		this.url = url;
+		this.url = CsrfTokenManager.getUrl(url);
 	}
 
 	public String getTitle() {

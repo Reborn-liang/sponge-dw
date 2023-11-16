@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@page import="cn.nearf.ggz.utils.SequenceUtils"%>
+<%@page import="cn.nearf.dw.indicator.filter.CsrfTokenManager"%>
 
 <%@ taglib prefix="t" uri="/easyui-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,12 +12,28 @@
 <% 
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+String CSRFToken = CsrfTokenManager.createTokenForSession(request.getSession());
+session.setAttribute(CsrfTokenManager.CSRF_TOKEN_FOR_SESSION_ATTR_NAME, CSRFToken);
 %>
 
 <c:set var="webRoot" value="<%=basePath%>" />
 <c:set var="pageUrl" value="<%=request.getServletPath()%>" />
 
 <script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() {
+		var forms = document.getElementsByTagName('form');
+		for (var i = 0; i < forms.length; i++) {
+			var form = forms[i];
+			if (form.method.toLowerCase() === 'post') {
+				var csrfInput = document.createElement('input');
+				csrfInput.type = 'hidden';
+				csrfInput.name = 'CSRFToken';
+				csrfInput.id = 'CSRFToken';
+				csrfInput.value = '<%=CSRFToken%>';
+				form.appendChild(csrfInput);
+			}
+		}
+	});
 <c:if test='${pageUrl.indexOf("/h5/") < 0}'>
 	
 	function setCookie(c_name, value, expiredays){
