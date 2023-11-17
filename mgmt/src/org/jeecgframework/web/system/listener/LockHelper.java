@@ -16,6 +16,7 @@ public class LockHelper {
     public static void putSession(HttpSession session){
         TSUser user=(TSUser)session.getAttribute("userSession");
         map.put(user.getId(), session);
+        setFlag(false);
     }
     public static void moveSession(HttpSession session){
         TSUser user=(TSUser)session.getAttribute("userSession");
