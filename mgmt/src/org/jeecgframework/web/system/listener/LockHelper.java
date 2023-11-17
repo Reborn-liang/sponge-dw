@@ -12,6 +12,7 @@ import java.util.Map;
  **/
 public class LockHelper {
     public static Map<String, HttpSession> map=new HashMap<String, HttpSession>();
+    public static boolean flag;
     public static void putSession(HttpSession session){
         TSUser user=(TSUser)session.getAttribute("userSession");
         map.put(user.getId(), session);
@@ -23,5 +24,14 @@ public class LockHelper {
     public static void destroyedSession(TSUser user){
         HttpSession session=map.get(user.getId());
         session.invalidate();
+        setFlag(true);
+    }
+
+    public static boolean isFlag() {
+        return flag;
+    }
+
+    public static void setFlag(boolean flag) {
+        LockHelper.flag = flag;
     }
 }

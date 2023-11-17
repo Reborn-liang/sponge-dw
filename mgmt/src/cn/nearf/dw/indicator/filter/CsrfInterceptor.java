@@ -6,6 +6,7 @@ package cn.nearf.dw.indicator.filter;
  * @Description
  **/
 
+import org.jeecgframework.web.system.listener.LockHelper;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,8 @@ public class CsrfInterceptor extends HandlerInterceptorAdapter {
         if ("POST".equalsIgnoreCase(request.getMethod()) && isFormUrlEncoded(contentType)) {
             String requestCsrfToken = CsrfTokenManager.getTokenFromRequest(request);
             String sessionCsrfToken = (String) request.getSession().getAttribute(CsrfTokenManager.CSRF_TOKEN_FOR_SESSION_ATTR_NAME);
+            if(sessionCsrfToken == null && LockHelper.isFlag())
+                return true;
 
             return Objects.equals(requestCsrfToken, sessionCsrfToken);
         }
